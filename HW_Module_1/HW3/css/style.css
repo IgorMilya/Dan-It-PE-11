@@ -1,0 +1,34 @@
+.container{
+    width: 1280px;
+    margin: 0 auto;
+}
+.header{
+    margin-top: 63px;
+    margin-bottom: 48px;
+}
+.header_title{
+    text-decoration: none;
+    font-size: 80px;
+    color: #000000;
+}
+.header_title_additional{
+color: #4BCAFF;
+}
+.header_navbar{
+    display: grid;
+    grid-template-columns: 162px 331px 152px 284px 221px 133px;
+    text-align: center;
+    margin-top: 38px;
+}
+.header_navbar_item{
+    background: #35444F;
+    border: 1px solid white;
+    color: white;
+    padding-top: 26px;
+    padding-bottom: 19px;
+    font-size: 24px;
+}
+.header_navbar_item:hover{
+    background:#222F3A;
+    transition: 0.7s;
+}
