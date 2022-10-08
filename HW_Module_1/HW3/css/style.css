@@ -71,13 +71,13 @@
 .main {
     display: flex;
     justify-content: space-between;
+    align-items: start;
 }
 
 .main_menu {
     display: block;
     border: 1px solid #000000;
     width: 350px;
-    height: 400px;
     font-size: 27px;
 
 }
@@ -100,8 +100,10 @@
 
 .main_content_screen {
     border: 1px solid #000000;
-    padding: 75px 268px 73px 297px;
+    padding: 75px 0;
     margin-bottom: 37px;
+    display: flex;
+    justify-content: center;
 }
 
 .main_content_screen_img:hover {
