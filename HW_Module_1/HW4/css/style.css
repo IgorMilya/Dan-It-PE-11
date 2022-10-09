@@ -13,6 +13,7 @@
     display: flex;
     justify-content: space-between;
     padding-top: 46px;
+    align-items: center;
 }
 
 .navbar_context {
@@ -60,15 +61,74 @@
 .navbar_contact {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: end;
 }
 
 .navbar_contact_personal {
     color: white;
     font-size: 18px;
+    padding-bottom: 20px;
+}
+.navbar_contact_personal:nth-child(2){
+    padding: 0;
 }
 
 .navbar_contact_personal:hover {
     color: #F26522;
 }
+
+.main_context {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 17px;
+    margin-bottom: 12px;
+}
+
+.main_context_figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 37px;
+    justify-content: space-between;
+}
+
+.main_context_figure_text {
+    font-size: 18px;
+    color: white;
+    line-height: 18px;
+    margin-top: 20px;
+}
+.main_context_figure:hover a.main_context_figure_text{
+    color: #F26522;
+}
+
+.footer {
+    text-align: center;
+}
+
+.footer_sub {
+    color: white;
+    font-size: 12px;
+    line-height: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
