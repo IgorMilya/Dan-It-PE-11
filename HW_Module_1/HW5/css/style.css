@@ -1,7 +1,8 @@
 .background {
     background: url("../img/backgroundMilano.png");
-    width: 1366px;
-    height: 768px;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
 }
 
 .container {
@@ -20,27 +21,30 @@
     display: flex;
 }
 
-.navbar_context:hover a.navbar_context_logo {
-    background: url("../img/logorange.png");
-}
-
 .navbar_context_logo {
     background: url("../img/logo.png");
     width: 53px;
     height: 47px;
 }
 
+.navbar_context:hover a.navbar_context_logo {
+    background: url("../img/logorange.png");
+}
+
+
 .navbar_context_text {
     margin-left: 8px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+
 }
 
 .navbar_context_text_milan {
     font-size: 29px;
     color: white;
     line-height: 29px;
+    font-weight: 700;
+    margin-bottom: 3px;
 }
 
 .navbar_context_text_milan:hover {
@@ -52,6 +56,7 @@
     font-size: 18px;
     color: white;
     line-height: 18px;
+    font-weight: 700;
 }
 
 .navbar_context_text_holidays:hover {
@@ -67,11 +72,10 @@
 .navbar_contact_personal {
     color: white;
     font-size: 18px;
-    padding-bottom: 20px;
 }
 
-.navbar_contact_personal:nth-child(2) {
-    padding: 0;
+.navbar_contact_personal:nth-child(1) {
+    padding-bottom: 20px;
 }
 
 .navbar_contact_personal:hover {
