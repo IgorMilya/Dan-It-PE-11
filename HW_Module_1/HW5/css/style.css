@@ -114,24 +114,30 @@
     transform: scaleY(0);
 
 }
+/*I didn't know, how would be right and I've written two options*/
+/*This one*/
 
 /*.main_context_figure_screen:hover div.main_context_figure_screen_text {*/
 /*    transform: scaleY(1);*/
 /*    bottom: 4px;*/
 /*}*/
 
+/*And this one*/
+
 .main_context_figure:hover div.main_context_figure_screen_text {
     transform: scaleY(1);
     bottom: 4px;
 }
 
+
+
 .main_context_figure_screen_text_price {
     color: white;
-    padding: 7px 0 12px 16px;
+    margin: 7px 0 12px 16px;
 }
 
 .main_context_figure_screen_text_price_from {
-    padding-bottom: 8px;
+    margin-bottom: 8px;
     font-size: 10px;
     line-height: 10px;
 }
@@ -144,8 +150,8 @@
 .main_context_figure_screen_text_details {
     display: flex;
     align-items: center;
-    padding-bottom: 12px;
-    padding-right: 14px;
+    margin-bottom: 12px;
+    margin-right: 14px;
     font-size: 14px;
     line-height: 14px;
     color: white;
@@ -160,6 +166,7 @@
     border-right: 1px solid #FFFFFF;
     transform: rotate(45deg);
 }
+
 
 
 .main_context_figure_text {
