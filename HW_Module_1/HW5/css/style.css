@@ -112,9 +112,15 @@
     align-items: end;
     transition: 1s;
     transform: scaleY(0);
+
 }
 
-.main_context_figure_screen:hover div.main_context_figure_screen_text {
+/*.main_context_figure_screen:hover div.main_context_figure_screen_text {*/
+/*    transform: scaleY(1);*/
+/*    bottom: 4px;*/
+/*}*/
+
+.main_context_figure:hover div.main_context_figure_screen_text {
     transform: scaleY(1);
     bottom: 4px;
 }
