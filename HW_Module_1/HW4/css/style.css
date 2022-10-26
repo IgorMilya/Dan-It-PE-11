@@ -10,7 +10,7 @@
 
 .background {
     background-image: url("../img/header-background.jpeg");
-    background-size:cover;
+    background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     /*height: 430vh;*/
@@ -178,7 +178,7 @@
 
 .footer {
     background-image: url("../img/parallax-bg.jpeg");
-    background-size:cover;
+    background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     padding-top: 172px;
