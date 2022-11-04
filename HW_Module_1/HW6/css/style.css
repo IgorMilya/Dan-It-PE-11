@@ -4,7 +4,6 @@ body {
 
 .background {
     background: url("../img/background.png") no-repeat;
-    height: 100vh;
     background-size: cover;
 
 }
@@ -17,7 +16,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0 79px;
-    margin-bottom: 54px;
+
 }
 
 .navbar_title {
@@ -39,8 +38,6 @@ body {
 
 .navbar_logos_item {
     margin-right: 25px;
-    color: white;
-    font-size: 14px;
 }
 
 .navbar_logos_item:hover path {
@@ -49,32 +46,52 @@ body {
 }
 
 
-.navbar_logos_item:nth-child(4) {
-    border-left: 1px solid white;
-    height: 19px;
-}
 
+.navbar_logos_item:nth-child(3) {
+    margin-right: 53px;
+}
 .navbar_logos_item:last-child {
-    margin: 0;
+    margin-right: 0;
+    position: relative;
+}
+.navbar_logos_item:last-child:before {
+    content: ' ';
+    position: absolute;
+    border-left: 1px solid rgba(255, 255, 255, 0.9);
+    height: 19px;
+    opacity: 0.5;
+    left: -27px;
+    bottom: -1px;
 }
 
 .navbar_logos_item_text {
     color: white;
+    font-size: 14px;
+}
+.navbar_logos_item_text_link {
+    color: white;
+    font-size: 14px;
 }
 
-.navbar_logos_item_text:hover {
+.navbar_logos_item_text_link:hover {
     color: green;
     transition: .5s;
 }
 
 .main {
-    margin: 0 auto;
+/*Как будет коректно: height: calc(100vh - 58px);*/
+    height: calc(100vh - 58px);
+/*Или height: calc(100vh - 54px);*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main_content{
     width: 444px;
     background: white;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.52);
     position: relative;
 }
-
 .container {
     width: 324px;
     margin: 0 auto;
