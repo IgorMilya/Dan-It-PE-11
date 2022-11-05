@@ -11,11 +11,10 @@ body {
 .navbar {
     background: rgba(0, 0, 0, 0.4);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    height: 58px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 79px;
+    padding: 17px 79px;
 
 }
 
@@ -79,9 +78,7 @@ body {
 }
 
 .main {
-/*Как будет коректно: height: calc(100vh - 58px);*/
-    height: calc(100vh - 58px);
-/*Или height: calc(100vh - 54px);*/
+    height: calc(100vh - 54px);
     display: flex;
     justify-content: center;
     align-items: center;
