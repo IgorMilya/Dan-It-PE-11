@@ -1,0 +1,47 @@
+body {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    background: #000;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    width: 70%;
+    margin: 0 20%;
+    height: 100%;
+    transform: perspective(200px) rotateX(20deg);
+}
+
+.container div {
+    color: gold;
+    text-align: center;
+    font-size: 51px;
+    line-height: 61px;
+    position: absolute;
+    animation: scroller 30s linear infinite;
+}
+
+.container div h1 {
+    margin-bottom: 70px;
+}
+
+.container div h2 {
+    margin-bottom: 70px;
+}
+
+.container div p {
+    text-align: justify;
+    margin-bottom: 70px;
+}
+
+
+@keyframes scroller {
+    0% {
+        top: 100%;
+    }
+    100% {
+        top: -150%;
+    }
+}
