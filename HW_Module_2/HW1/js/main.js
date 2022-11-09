@@ -4,6 +4,7 @@ admin = name;
 console.log(admin);
 
 const days = Math.floor(Math.random() * 10) + 1;
+console.log(String(days + 's'));
 console.log(days + 's');
 
 const property = prompt("Enter some value");
