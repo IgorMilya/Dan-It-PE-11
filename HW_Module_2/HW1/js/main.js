@@ -3,10 +3,10 @@ name = 'Ihor';
 admin = name;
 console.log(admin);
 
-let days = Math.floor(Math.random() * 10) + 1;
+const days = Math.floor(Math.random() * 10) + 1;
 console.log(days + 's');
 
-let property = prompt("Enter some value");
+const property = prompt("Enter some value");
 console.log(property);
 
 // 1. Як можна оголосити змінну у Javascript?
