@@ -4,11 +4,10 @@ admin = name;
 console.log(admin);
 
 let days = Math.floor(Math.random() * 10) + 1;
-console.log(days + 's')
+console.log(days + 's');
 
 let property = prompt("Enter some value");
 console.log(property);
-Boolean(2);
 
 // 1. Як можна оголосити змінну у Javascript?
 // 2. У чому різниця між функцією prompt та функцією confirm?
