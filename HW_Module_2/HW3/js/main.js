@@ -1,7 +1,7 @@
 let number = +prompt("Enter the number:");
 
-while(isNaN(number) || Number.isInteger(number) === false || !!number === false){
-     number = +prompt("Enter the number:");
+while (isNaN(number) || Number.isInteger(number) === false || !!number === false) {
+    number = +prompt("Enter the number:");
 }
 
 // if (number % 5 === 0){
@@ -12,10 +12,21 @@ while(isNaN(number) || Number.isInteger(number) === false || !!number === false)
 //     alert("Sorry, no numbers");
 // }
 
-if (number >= 5){
-    for (let i = 0; i <= number; i+=5){
+if (number >= 5) {
+    for (let i = 0; i <= number; i += 5) {
         console.log(i)
     }
-}else {
+} else {
     alert("Sorry, no numbers");
 }
+
+// 1. Описати своїми словами у кілька рядків, навіщо у програмуванні потрібні цикли.
+// 2. Опишіть у яких ситуаціях ви використовували той чи інший цикл в JS.
+// 3. Що таке явне та неявне приведення (перетворення) типів даних у JS?
+
+// 1. Циклы нужны чтобы не писать одно и тоже действие постоянно, а записать цикл. Чтобы
+// 2. While - когда мы не знаем сколько итераций оно будет повторяться, for - когда мы знаем сколько оно будет повторяться и
+// do while - когда точно одно действие будет выполняться.
+// 3. Неявне перетворення это значения которые могут быть конвертированы между различными типами автоматически, также
+// с помощью неявного приобразования мы можем писать меньше кода если будем знать как оно работает,
+// а явне это когда мы сами хотим намеренно сконвертировать того или иного значение (Number(), String()...).
