@@ -11,7 +11,7 @@ let symbol = prompt(`Enter + or - or / or * `);
 let count = (num1, num2, item) => {
     switch (item) {
         case `+` :
-            //как лучше
+            // как лучше
             // так
             console.log(`${num1} + ${num2} = ${num1 + num2}`)
             //или так
@@ -27,7 +27,7 @@ let count = (num1, num2, item) => {
             console.log(`${num1} * ${num2} = ${num1 * num2}`)
             break;
         default:
-            console.log("Sorry, the symbol is not correct")
+            console.log(`Sorry, the symbol is not correct`)
     }
 }
 count(number1, number2, symbol);
