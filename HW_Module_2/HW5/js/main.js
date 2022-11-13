@@ -3,11 +3,11 @@ const createNewUser = () => {
     let lastName = prompt("Enter your lastName");
     let newUser;
     newUser = {
-        name: name,
+        firstName: name,
         lastName: lastName,
         getLogin(name,lastName) {
-            return  name[0].toLowerCase() + lastName.toLowerCase();
-            // return  this.name[0].toLowerCase() + this.lastName.toLowerCase();
+            return  (name[0] + lastName).toLowerCase();
+            // return  (this.firstName[0] + this.lastName).toLowerCase();
         }
     };
     return newUser.getLogin(name,lastName);
