@@ -5,7 +5,6 @@ const createNewUser = () => {
     const newUser = {
         firstName: name,
         lastName: secondName,
-        writable: false,
         getLogin() {
             return (this.firstName[0] + this.lastName).toLowerCase();
         }
