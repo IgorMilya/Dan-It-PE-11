@@ -19,7 +19,7 @@ const insert = (array, parent) => {
 //     body.style.display = "none";
 // }
 
-insert(["Kharkiv", "Kiev", ["Borispol", "Irpin"], "Odessa", "Lviv", "Dnieper"], ul);
+insert(["Kharkiv", "Kyiv", ["Borispol", "Irpin"], "Odessa", "Lviv", "Dnieper"], ul);
 
 setInterval(()=> ul.remove(), 3000);
 
