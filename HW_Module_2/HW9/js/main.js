@@ -14,16 +14,9 @@ const insert = (array, parent) => {
     })
 }
 
-// const demolish = () => {
-//     let body = document.querySelector("body");
-//     body.style.display = "none";
-// }
-
 insert(["Kharkiv", "Kyiv", ["Borispol", "Irpin"], "Odessa", "Lviv", "Dnieper"], ul);
 
 setInterval(() => ul.remove(), 3000);
-
-// setInterval(demolish,3000);
 
 
 //1. Опишіть, як можна створити новий HTML тег на сторінці.
