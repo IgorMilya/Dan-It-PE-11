@@ -2,13 +2,17 @@ let password = document.querySelector('.password'),
     password2 = document.querySelector('.password2'),
     icon = document.querySelector('#icon'),
     icon2 = document.querySelector('#icon2'),
-    button = document.querySelector('.btn'),
+    form = document.querySelector('.password-form'),
     p = document.createElement('p'),
     label2 = document.querySelector('.input-wrapper:nth-child(2)');
 
 const openEye = (item, input) => {
     item.addEventListener('click', () => {
-        item.classList.toggle('fa-eye-slash');
+        if (item.classList.contains('fa-eye')) {
+            item.classList.replace('fa-eye', 'fa-eye-slash')
+        } else {
+            item.classList.replace('fa-eye-slash', 'fa-eye')
+        }
         if (item.className.includes('fa-eye-slash')) {
             input.setAttribute("type", "text");
         } else {
@@ -16,10 +20,11 @@ const openEye = (item, input) => {
         }
     });
 };
+
 openEye(icon, password);
 openEye(icon2, password2);
 
-button.addEventListener('click', (item) => {
+form.addEventListener('submit', (item) => {
     item.preventDefault();
     if (password.value === password2.value) {
         alert('Welcome');
