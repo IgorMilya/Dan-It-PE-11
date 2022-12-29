@@ -1,4 +1,9 @@
 let button = document.querySelector('.button');
+document.body.className = localStorage.color;
+
+if (!localStorage.color){
+    localStorage.setItem("color", "none");
+}
 
 button.addEventListener('click', () => {
     if (document.body.className.includes("none")) {
@@ -6,12 +11,5 @@ button.addEventListener('click', () => {
     } else {
         document.body.classList.replace("blue", "none")
     }
-    localStorage.color = document.body.className || "none";
+    localStorage.color = document.body.className;
 });
-
-if (!localStorage.color) {
-    localStorage.color = "none"
-}
-document.body.className = localStorage.color;
-
-

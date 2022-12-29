@@ -1,9 +1,9 @@
-let imageToShow = document.querySelectorAll('.image-to-show'),
-    btnStop = document.querySelector('.btn__stop'),
-    btnContinue = document.querySelector('.btn__continue'),
-    div = document.createElement("div"),
-    secs = 3,
-    item = 0;
+let imageToShow = document.querySelectorAll('.image-to-show');
+let btnStop = document.querySelector('.btn__stop');
+let btnContinue = document.querySelector('.btn__continue');
+let div = document.createElement("div");
+let secs = 3;
+let item = 0;
 document.body.append(div);
 
 const circle = () => {
@@ -12,14 +12,17 @@ const circle = () => {
     imageToShow[item].classList.add('active');
 }
 
+
 const tick = () => {
-    div.innerText = `${secs = secs - 0.1}`;
+    let currentTime = (secs = secs - 0.01).toFixed(3);
+    div.innerText = `${currentTime}`;
     if (secs < 0) {
         secs = 3;
     }
 }
 
-let timer = setInterval(tick, 100);
+let timer = setInterval(tick, 10);
+
 let slideShow = setInterval(circle, 3000);
 
 
@@ -31,8 +34,8 @@ btnStop.addEventListener('click', () => {
 
 btnContinue.addEventListener('click', () => {
     slideShow = setInterval(circle, 3000)
-    secs = 3
-    timer = setInterval(tick, 100)
+    timer = setInterval(tick, 10)
+    secs = 3;
     btnContinue.disabled = true;
 })
 
