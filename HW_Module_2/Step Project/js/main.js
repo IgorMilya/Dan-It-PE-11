@@ -31,7 +31,7 @@ const tabAction2 = (list, info) => {
             let tab = item.getAttribute("data-tab");
             console.log(tab)
             info.forEach(value => {
-                value.className.includes(tab) ? value.style.position = "static" : value.style.position = "absolute"
+                value.className.includes(tab) ? value.style.display = "block" : value.style.display = "none"
             })
         })
     });
@@ -40,15 +40,14 @@ tabAction2(mainTabItem, picturesItem);
 const deleteButton = (item, item2, num, btn) => {
     btn.addEventListener("click", () => {
             if (num === 1) {
-                item2.forEach(element => {
+                none2.forEach(element => {
                     element.classList.remove("none2");
-                    btn.remove();
                 })
-                num--;
+                btn.remove();
             } else {
-                item.forEach(element => {
+                none1.forEach(element => {
                     element.classList.remove("none1");
-                })
+                });
                 num--;
             }
         })

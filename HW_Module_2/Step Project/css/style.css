@@ -362,7 +362,83 @@
     flex-wrap: wrap;
     margin-bottom: 70px;
 }
+.main_pictures_box{
+    position: relative;
+    height: 210px;
+}
+.main_pictures_box_hover{
+    position: absolute;
+    background: #E9EDEF;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scaleY(0);
+    top: 105px;
 
+}
+.main_pictures_box_hover:before{
+    content: "";
+    position: absolute;
+    border-top:6px solid #18CFAB;
+    width: 100%;
+}
+.main_pictures_box_hover_svg{
+    margin-top: 48px;
+    display: flex;
+    margin-bottom: 23px;
+}
+.main_pictures_box_hover_svg_circle{
+    width: 40px;
+    height: 40px;
+    border: 1px solid #18CFAB;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main_pictures_box_hover_svg_circle_square{
+    background: #18CFAB;
+    width: 12px;
+    height: 11px;
+}
+.main_pictures_box_hover_text{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 25px;
+    text-transform: uppercase;
+    color: #18CFAB;
+}
+.main_pictures_box_hover_subtext{
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 25px;
+    color: #8A8A8A;
+}
+.main_pictures_box_hover_svg_circle:hover{
+    background: #18CFAB;
+}
+.main_pictures_box_hover_svg_circle:hover svg path{
+    fill: white;
+}
+.main_pictures_box_hover_svg_circle:hover .main_pictures_box_hover_svg_circle_square{
+    background: white;
+}
+.main_pictures_box_hover_svg_circle:nth-child(1){
+    margin-right: 3px;
+}
+.main_pictures_box:hover .main_pictures_box_hover{
+    transform: scaleY(1);
+    transition: 1s;
+    top: 0;
+}
+.main_pictures_item{
+    height: 210px;
+    width: 287px;
+}
 .none1 {
     display: none;
 }
