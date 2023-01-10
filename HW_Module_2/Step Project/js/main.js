@@ -21,54 +21,32 @@ const showInfo = (text, tab ) => {
     })
 }
 
-const tabAction = (list, text) => {
-    list.forEach(item => {
+const showImages = (text, tab) => {
+    text.forEach(value => {
+        console.log(value)
+        value.className.includes(tab) ? value.style.display = "block" : value.style.display = "none"
+    })
+}
+
+const tabAction = (list, text, searchClass) => {
+    list.forEach((item, index , array) => {
         item.addEventListener("click", () => {
-            let active = document.querySelector(".main_list_item.active");
+            let active = document.querySelector(searchClass);
             active.classList.remove("active");
             item.classList.add("active");
             let tab = item.getAttribute("data-tab");
-            showInfo(text, tab)
+            if (array === mainTabItem){
+                showImages(text, tab)
+            }else {
+                showInfo(text, tab)
+            }
         })
     });
 }
-tabAction(mainListItem, mainInfo);
 
-const tabAction2 = (list, text) => {
-    list.forEach(item => {
-        item.addEventListener("click", () => {
-            let active = document.querySelector(".main_tab_item.active");
-            active.classList.remove("active");
-            item.classList.add("active");
-
-            let tab = item.getAttribute("data-tab");
-            console.log(tab)
-            text.forEach(value => {
-                value.className.includes(tab) ? value.style.display = "block" : value.style.display = "none"
-            })
-        })
-    });
-}
-tabAction2(mainTabItem, picturesItem);
-
-const tabAction3 = (list, text) => {
-    list.forEach(item => {
-        item.addEventListener("click", (e) => {
-            console.log(e.target);
-            let active = document.querySelector(".main_slider_item_list_item.active");
-            active.classList.remove("active");
-            item.classList.add("active");
-            let tab = item.getAttribute("data-tab");
-            showInfo(text, tab)
-        })
-    });
-}
-tabAction3(sliderItems, sliderItem);
-
-
-
-
-
+tabAction(mainListItem, mainInfo, ".main_list_item.active" );
+tabAction(sliderItems, sliderItem, ".main_slider_item_list_item.active" );
+tabAction(mainTabItem, picturesItem, ".main_tab_item.active");
 
 const slider = (back, next, tabs, text) => {
     let position;
@@ -89,9 +67,8 @@ const slider = (back, next, tabs, text) => {
 
     back.addEventListener("click", () => {
         tabs.forEach((item, index) => {
-            if (item.classList.contains("active")) {
+            if (item.className.includes("active")) {
                 position = index;
-                console.log(position);
             }
         })
         tabs[position].className = 'main_slider_item_list_item';
@@ -132,24 +109,3 @@ buttonFirst.addEventListener("click", () => {
 })
 
 
-// const deleteButton = (item, item2, num, btn) => {
-//     btn.addEventListener("click", () => {
-//         middle.classList.remove("hidden");
-//         setTimeout(() => {
-//             if (num <= 1) {
-//                 item2.forEach(element => {
-//                     element.classList.remove("none2");
-//                 })
-//                 middle.classList.add("hidden");
-//                 btn.remove();
-//             } else {
-//                 item.forEach(element => {
-//                     element.classList.remove("none1");
-//                 });
-//                 middle.classList.add("hidden");
-//                 num--;
-//             }
-//         }, 3000)
-//     })
-// }
-// deleteButton(none3, none4, counter, buttonSecond);
