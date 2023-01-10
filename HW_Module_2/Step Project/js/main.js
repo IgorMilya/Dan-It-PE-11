@@ -15,6 +15,12 @@ let buttonNext = document.querySelector(".main_slider_item_list_button_next");
 let middle = document.querySelector(".middle");
 let counter = 2;
 
+const showInfo = (text, tab ) => {
+    text.forEach(value => {
+        value.classList.toggle("active", value.className.includes(tab))
+    })
+}
+
 const tabAction = (list, text) => {
     list.forEach(item => {
         item.addEventListener("click", () => {
@@ -22,15 +28,13 @@ const tabAction = (list, text) => {
             active.classList.remove("active");
             item.classList.add("active");
             let tab = item.getAttribute("data-tab");
-            text.forEach(value => {
-                value.className.includes(tab) ? value.classList.add("active") : value.classList.remove("active");
-            })
+            showInfo(text, tab)
         })
     });
 }
 tabAction(mainListItem, mainInfo);
 
-const tabAction2 = (list, info) => {
+const tabAction2 = (list, text) => {
     list.forEach(item => {
         item.addEventListener("click", () => {
             let active = document.querySelector(".main_tab_item.active");
@@ -39,7 +43,7 @@ const tabAction2 = (list, info) => {
 
             let tab = item.getAttribute("data-tab");
             console.log(tab)
-            info.forEach(value => {
+            text.forEach(value => {
                 value.className.includes(tab) ? value.style.display = "block" : value.style.display = "none"
             })
         })
@@ -47,16 +51,15 @@ const tabAction2 = (list, info) => {
 }
 tabAction2(mainTabItem, picturesItem);
 
-const tabAction3 = (list, feedback) => {
+const tabAction3 = (list, text) => {
     list.forEach(item => {
-        item.addEventListener("click", () => {
+        item.addEventListener("click", (e) => {
+            console.log(e.target);
             let active = document.querySelector(".main_slider_item_list_item.active");
             active.classList.remove("active");
             item.classList.add("active");
             let tab = item.getAttribute("data-tab");
-            feedback.forEach(value => {
-                value.className.includes(tab) ? value.classList.add("active") : value.classList.remove("active")
-            })
+            showInfo(text, tab)
         })
     });
 }
@@ -67,7 +70,7 @@ tabAction3(sliderItems, sliderItem);
 
 
 
-const slider = (back, next, tabs, feedback) => {
+const slider = (back, next, tabs, text) => {
     let position;
 
     next.addEventListener("click", () => {
@@ -81,9 +84,7 @@ const slider = (back, next, tabs, feedback) => {
         tabs[position].classList.add('active');
 
         let tab = tabs[position].getAttribute("data-tab");
-        feedback.forEach(value => {
-            value.className.includes(tab) ? value.classList.add("active") : value.classList.remove("active")
-        })
+        showInfo(text, tab)
     })
 
     back.addEventListener("click", () => {
@@ -98,14 +99,14 @@ const slider = (back, next, tabs, feedback) => {
         tabs[position].classList.add('active');
 
         let tab = tabs[position].getAttribute("data-tab");
-        feedback.forEach(value => {
-            value.className.includes(tab) ? value.classList.add("active") : value.classList.remove("active")
-        })
+        showInfo(text, tab)
     })
 
 }
 
 slider(buttonBack, buttonNext, sliderItems, sliderItem);
+
+
 
 
 const deleteButton = (item, item2, num, btn) => {
