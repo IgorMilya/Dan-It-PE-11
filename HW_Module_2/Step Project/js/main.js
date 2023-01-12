@@ -1,9 +1,9 @@
-let mainListItem = document.querySelectorAll(".main_list_item");
-let mainInfo = document.querySelectorAll(".main_info");
-let picturesTab = document.querySelectorAll(".main_tab_item");
-let picturesItem = document.querySelectorAll(".main_pictures_item");
-let sliderItem = document.querySelectorAll(".main_slider_item");
-let sliderItems = document.querySelectorAll(".main_slider_item_list_item");
+const mainListItem = document.querySelectorAll(".main_list_item");
+const mainInfo = document.querySelectorAll(".main_info");
+const picturesTab = document.querySelectorAll(".main_tab_item");
+const picturesItem = document.querySelectorAll(".main_pictures_item");
+const sliderItem = document.querySelectorAll(".main_slider_item");
+const sliderItems = document.querySelectorAll(".main_slider_item_list_item");
 
 const showInfo = (text, tab) => {
     text.forEach(value => {
@@ -41,8 +41,8 @@ tabAction(sliderItems, sliderItem, ".main_slider_item_list_item.active");
 
 //Slider Block
 
-// Slider button
-let buttonSlider = document.querySelectorAll(".main_slider_item_list_button");
+// Slider buttons
+const buttonSlider = document.querySelectorAll(".main_slider_item_list_button");
 let position;
 
 
@@ -95,24 +95,23 @@ window.addEventListener("keydown", (e) => {
 
 
 // Slider mousemove
-let mainSlider = document.querySelector(".main_slider");
+const mainSlider = document.querySelector(".main_slider");
 let x1 = null;
 let y1 = null;
 
-const handleTouchStart = (e) => {
+const handleMouseDown = (e) => {
     x1 = e.clientX;
     y1 = e.clientY;
 }
 
-const handleTouchMove = (e) => {
+const handleMouseUp = (e) => {
     if (!x1 || !y1) return false;
 
     let x2 = e.clientX;
     let y2 = e.clientY;
     let xDiff = x2 - x1;
     let yDiff = y2 - y1;
-    console.log(xDiff);
-    console.log(xDiff + 100)
+
     if (Math.abs(xDiff) > Math.abs(yDiff)) {
         if ((xDiff + 200) < 0) {
             nextSlide()
@@ -125,16 +124,16 @@ const handleTouchMove = (e) => {
 }
 
 
-mainSlider.addEventListener("mousedown", handleTouchStart);
-mainSlider.addEventListener("mouseup", handleTouchMove);
+mainSlider.addEventListener("mousedown", handleMouseDown);
+mainSlider.addEventListener("mouseup", handleMouseUp);
 
 mainSlider.onmousedown = new Function("return false;")
 
 // Add images Our Amazing Work
-let buttonFirst = document.querySelector(".first");
-let none1 = document.querySelectorAll(".none1");
-let none2 = document.querySelectorAll(".none2");
-let middle = document.querySelector(".middle");
+const buttonFirst = document.querySelector(".first");
+const none1 = document.querySelectorAll(".none1");
+const none2 = document.querySelectorAll(".none2");
+const middle = document.querySelector(".middle");
 let counter = 2;
 
 const addPictures = (item, item2, num, btn) => {
@@ -161,10 +160,10 @@ buttonFirst.addEventListener("click", () => {
 
 
 // Add images in Gallery of best images
-let secondMiddle = document.querySelector(".second_middle");
-let buttonSecond = document.querySelector(".second");
-let none3 = document.querySelectorAll(".none3");
-let grid = document.querySelector(".main_grid");
+const secondMiddle = document.querySelector(".second_middle");
+const buttonSecond = document.querySelector(".second");
+const none3 = document.querySelectorAll(".none3");
+const grid = document.querySelector(".main_grid");
 
 buttonSecond.addEventListener("click", () => {
     secondMiddle.classList.remove("hidden");
@@ -173,26 +172,7 @@ buttonSecond.addEventListener("click", () => {
         none3.forEach(item => {
             item.classList.remove("none3");
         })
-        grid.style.cssText = `
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-         grid-template-rows: 263px 97px 64px 62px 81px 188px 46px 181px 62px 32px 242px;
-        grid-gap: 20px;
-        margin-bottom: 52px;
-        grid-template-areas:
-            "item1 item2 item3"
-            "item4 item2 item3"
-            "item4 item5 item3"
-            "item4 item5 item6"
-            "item7 item5 item6"
-            "item7 item8 item6"
-            "item9 item8 item11"
-            "item9 item10 item11"
-            "item9 item10 item12"
-            "item9 item13 item12"
-            "item14 item13 item12"
-            "item14 item13 item12";
-        `;
+        grid.classList.replace("main_grid", "main_grid_changed")
         secondMiddle.classList.add("hidden");
     }, 3000,)
 })

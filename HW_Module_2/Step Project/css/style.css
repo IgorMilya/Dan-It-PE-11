@@ -833,6 +833,27 @@
         "item7 item8 item6"
 }
 
+.main_grid_changed {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 263px 97px 64px 62px 81px 188px 46px 181px 62px 32px 242px;
+    grid-gap: 20px;
+    margin-bottom: 52px;
+    grid-template-areas:
+            "item1 item2 item3"
+            "item4 item2 item3"
+            "item4 item5 item3"
+            "item4 item5 item6"
+            "item7 item5 item6"
+            "item7 item8 item6"
+            "item9 item8 item11"
+            "item9 item10 item11"
+            "item9 item10 item12"
+            "item9 item13 item12"
+            "item14 item13 item12"
+            "item14 item13 item12";
+}
+
 .main_grid_house:nth-child(1) {
     grid-area: item1;
 }
