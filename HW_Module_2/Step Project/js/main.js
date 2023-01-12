@@ -40,9 +40,11 @@ tabAction(sliderItems, sliderItem, ".main_slider_item_list_item.active");
 
 
 //Slider Block
-let buttonBack = document.querySelector(".main_slider_item_list_button_back");
-let buttonNext = document.querySelector(".main_slider_item_list_button_next");
+
+// Slider button
+let buttonSlider = document.querySelectorAll(".main_slider_item_list_button");
 let position;
+
 
 const findPosition = () => {
     sliderItems.forEach((item, index) => {
@@ -53,27 +55,36 @@ const findPosition = () => {
     sliderItems[position].className = 'main_slider_item_list_item';
 }
 
+const getAtt = () => {
+    sliderItems[position].classList.add('active');
+    let tab = sliderItems[position].getAttribute("data-tab");
+    showInfo(sliderItem, tab)
+}
+
 const nextSlide = () => {
     findPosition();
     position === sliderItems.length - 1 ? position = 0 : position++
-    sliderItems[position].classList.add('active');
-
-    let tab = sliderItems[position].getAttribute("data-tab");
-    showInfo(sliderItem, tab)
+    getAtt()
 }
 
 const previousSlide = () => {
     findPosition();
     position === 0 ? position = sliderItems.length - 1 : position--
-    sliderItems[position].classList.add('active');
-
-    let tab = sliderItems[position].getAttribute("data-tab");
-    showInfo(sliderItem, tab)
+    getAtt()
 }
 
+buttonSlider.forEach(item => {
+    item.addEventListener("click", () => {
+        if (item.className.includes("next")) {
+            nextSlide()
+        } else if (item.className.includes("back")) {
+            previousSlide()
+        }
+    })
+})
 
-buttonNext.addEventListener("click", nextSlide)
-buttonBack.addEventListener("click", previousSlide)
+
+// Slider keydown
 window.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") {
         nextSlide()
@@ -82,6 +93,42 @@ window.addEventListener("keydown", (e) => {
     }
 })
 
+
+// Slider mousemove
+let mainSlider = document.querySelector(".main_slider");
+let x1 = null;
+let y1 = null;
+
+const handleTouchStart = (e) => {
+    x1 = e.clientX;
+    y1 = e.clientY;
+}
+
+const handleTouchMove = (e) => {
+    if (!x1 || !y1) return false;
+
+    let x2 = e.clientX;
+    let y2 = e.clientY;
+    let xDiff = x2 - x1;
+    let yDiff = y2 - y1;
+    console.log(xDiff);
+    console.log(xDiff + 100)
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if ((xDiff + 200) < 0) {
+            nextSlide()
+        } else if ((xDiff - 200) > 0) {
+            previousSlide()
+        }
+    }
+    x1 = null;
+    y1 = null;
+}
+
+
+mainSlider.addEventListener("mousedown", handleTouchStart);
+mainSlider.addEventListener("mouseup", handleTouchMove);
+
+mainSlider.onmousedown = new Function("return false;")
 
 // Add images Our Amazing Work
 let buttonFirst = document.querySelector(".first");
