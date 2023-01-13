@@ -13,7 +13,6 @@ const showInfo = (text, tab) => {
 
 const showImages = (text, tab) => {
     text.forEach(value => {
-        console.log(value)
         value.className.includes(tab) ? value.style.display = "block" : value.style.display = "none"
     })
 }
