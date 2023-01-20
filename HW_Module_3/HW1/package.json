@@ -1,0 +1,28 @@
+{
+  "name": "project-x",
+  "version": "1.0.0",
+  "description": "Ihor Milevskyi fe_11_2",
+  "main": " app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/imilay11/hw-pe_11.git"
+  },
+  "author": "Ihor Milevskyi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/imilay11/hw-pe_11/issues"
+  },
+  "homepage": "https://gitlab.com/imilay11/hw-pe_11#readme",
+  "devDependencies": {
+    "browser-sync": "^2.27.11",
+    "eslint": "^8.32.0",
+    "gulp": "^4.0.2"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "moment": "^2.29.4"
+  }
+}
