@@ -1,0 +1,75 @@
+.main-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 37px;
+  margin-top: 22px;
+
+  &__item {
+    width: 50%;
+    display: flex;
+    gap: 21px;
+    margin-bottom: 32px;
+  }
+
+  &__images {
+    max-width: 160px;
+    max-height: 140px;
+  }
+
+  &__block {
+    margin-right: 25px;
+  }
+
+  &__title {
+    @include text($title-size, 700, $title-color, 30px, ("Roboto", sans-serif));
+  }
+
+  &__subtitle {
+    @include text(12px, 400, $subtitle-color, 20px, ("Roboto", sans-serif));
+
+  }
+
+  &__text {
+    @include text($text-size, 400, $text-color, 26px, ("Roboto", sans-serif));
+    margin-top: 13px;
+  }
+}
+
+@media screen and (max-width: 1075px) {
+  .main-list {
+    display: block;
+    margin-bottom: 60px;
+
+    &__item {
+      width: 100%;
+    }
+    &__block {
+      margin-right: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-list {
+    margin-bottom: 40px;
+
+    &__item {
+      display: block;
+      margin-bottom: 28px;
+    }
+    &__block {
+      margin-top: 11px;
+    }
+    &__title {
+      @include text($text-size, 700, $title-color, 30px, ("Roboto", sans-serif));
+    }
+
+    &__subtitle {
+      @include text($nav-size, 400, $subtitle-color, 20px, ("Roboto", sans-serif));
+
+    }
+    &__text {
+      display: none;
+    }
+  }
+}

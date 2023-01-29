@@ -1,0 +1,28 @@
+.footer {
+  background: #000000;
+  padding-top: 66px;
+  padding-bottom: 70px;
+  text-align: center;
+
+  &__title {
+    @include text($title-size, 700, #FEFEFE, 22px, ("Roboto", sans-serif));
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+
+  &__block {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 34px;
+    margin-top: 37px;
+  }
+
+  &__text {
+    @include text($title-size, 400, #B9B9B9, 26px, ("Roboto", sans-serif));
+  }
+
+  &__text a {
+    @include text($title-size, 400, #B9B9B9, 26px, ("Roboto", sans-serif));
+  }
+}

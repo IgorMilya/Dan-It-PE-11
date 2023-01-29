@@ -1,0 +1,22 @@
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 50px;
+  @media screen and (max-width: 1075px) {
+    padding: 0 38px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 0 26px;
+  }
+}
+
+.main-title {
+  @include text($title-size, 700, $title-color, 22px, ("Roboto", sans-serif));
+  text-transform: uppercase;
+
+  @media screen and (max-width: 768px) {
+    @include text($text-size, 700, $title-color, 22px, ("Roboto", sans-serif));
+  }
+}
+
+
