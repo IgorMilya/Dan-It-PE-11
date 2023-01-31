@@ -52,7 +52,7 @@ const js = () => (
 );
 
 const imgMin = () => (
-    gulp.src('./src/img/**')
+    gulp.src('./src/img/**/*.+(png|jpg|gif|svg)')
         .pipe(imagemin({
             progressive: true
         }))
@@ -67,7 +67,7 @@ const watcher = () => {
     });
     gulp.watch(paths.src.styles, scssBuildMin).on('change', browserSync.reload);
     gulp.watch('src/js/*.js', js).on('change', browserSync.reload);
-    gulp.watch('./src/img/**', imgMin).on('change', browserSync.reload);
+    gulp.watch('./src/img/**/*.+(png|jpg|gif|svg)', imgMin).on('change', browserSync.reload);
     gulp.watch(paths.src.html).on('change', browserSync.reload);
 };
 

@@ -16,7 +16,6 @@
 
   &__post {
     display: flex;
-    max-width: 100%;
     justify-content: space-between;
   }
 
@@ -78,9 +77,4 @@
       display: none;
     }
   }
-
-  .opened{
-    display: block;
-  }
-
 }
