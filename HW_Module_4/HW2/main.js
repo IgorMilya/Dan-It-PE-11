@@ -1,33 +1,3 @@
-// let json2 = ' { "users":{"User1":{"income": "1000", "work": "Hostinger"},"User2":{"income2": "12", "work2": "Dan It"}} } ';
-// console.log(json2);
-//
-// const {users} = JSON.parse(json2);
-// const {User2} = users
-// const {work2} = User2
-
-// console.log(work2)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // const books = [
 //     {
 //         author: "Люсі Фолі",
@@ -64,41 +34,39 @@
 //
 //
 // books.map(item => {
-//     let li = document.createElement("li");
+//
 //     const {author, name, price} = item;
 //
 //     if (!!author && !!name && !!price) {
-//         li.textContent = `${author} ${name} ${price}`
-//     } else {
-//         return;
+//         let ul = document.createElement("ul");
+//         ul.innerHTML = `
+//        <li>${author}</li>
+//        <li>${name}</li>
+//        <li>${price}</li>
+//        `
+//         root.append(ul);
 //     }
-//     ul.append(li);
 //
+//     try {
+//         if (!author || !name || !price) {
+//             throw new Error("The property is not in obj")
+//         }
 //
-//     // if (!!author && !!name && !!price) {
-//     //     let ul = document.createElement("ul");
-//     //    ul.innerHTML = `
-//     //    <li>${author}</li>
-//     //    <li>${name}</li>
-//     //    <li>${price}</li>
-//     //    `
-//     //  root.append(ul);
-//     // }
-//
-//
-//
+//     } catch (e) {
+//         console.error(e.message)
+//     }
 //
 // })
-
-
-
-
-
-
-
-
-
-
-
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
