@@ -47,6 +47,7 @@ books.map(item => {
         root.append(ul);
     }
 
+
     try {
         if (!author || !name || !price) {
             throw new Error("The property is not in obj")
