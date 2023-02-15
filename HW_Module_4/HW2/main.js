@@ -49,8 +49,14 @@ books.map(item => {
 
 
     try {
-        if (!author || !name || !price) {
-            throw new Error("The property is not in obj")
+        if (!author ) {
+            throw new Error("The property of author is not in obj")
+        }
+        if (!name ) {
+            throw new Error("The property of name is not in obj")
+        }
+        if (!price) {
+            throw new Error("The property of price is not in obj")
         }
 
     } catch (e) {
