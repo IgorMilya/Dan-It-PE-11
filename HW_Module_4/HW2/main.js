@@ -25,6 +25,7 @@ const books = [
     {
         author: "Анґус Гайленд",
         name: "Коти в мистецтві",
+
     }
 ];
 
@@ -46,31 +47,22 @@ books.map(item => {
        `
         root.append(ul);
     }
-
-
-    try {
-        if (!author ) {
-            throw new Error("The property of author is not in obj")
-        }
-        if (!name ) {
-            throw new Error("The property of name is not in obj")
-        }
-        if (!price) {
-            throw new Error("The property of price is not in obj")
-        }
-
-    } catch (e) {
-        console.error(e.message)
-    }
-
 })
 
 
+books.forEach((item, index) => {
+    ['name', 'author', 'price'].forEach(prop => {
+        try {
+            if (!item.hasOwnProperty(prop)) {
+                throw new Error(`В обьекте номер ${index + 1} нет ${prop}`)
+            }
+        } catch (e) {
+            console.error(e.message)
+        }
 
+    })
 
-
-
-
+})
 
 
 
