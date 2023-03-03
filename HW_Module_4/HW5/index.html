@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reset.css">
+
+</head>
+<body>
+
+<div class="container">
+    <button class="bnt-post">Add new post</button>
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <ul class="wrapper">
+
+    </ul>
+    <div class="scrim">
+        <div class="modal-window">
+            <form class="main_data">
+
+                <label class="main_data_label">
+                    <input id="title" class="main_data_label_gap" name="title" type="text" placeholder="Title" required>
+                </label>
+
+                <label class="main_data_label">
+                    <textarea id="body" class="main_data_label_gap" name="body" rows="4" cols="50" placeholder="Text" required></textarea>
+                </label>
+
+                <button class="main_data_btn">Create Account</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/main.js" type="module"></script>
+</body>
+</html>
