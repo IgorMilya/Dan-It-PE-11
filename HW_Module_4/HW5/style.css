@@ -34,6 +34,7 @@
 .wrapper-list {
     border: 1px solid gainsboro;
     padding: 10px 20px;
+
 }
 
 .delete-btn {
@@ -185,3 +186,29 @@
     background: #01813F;
     transition: .5s;
 }
+.pen-icon{
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
+}
+.input-wrapper{
+    display: none;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+}
+.input-text{
+    padding: 2px;
+}
+.input-text:last-child{
+    margin-top: 20px;
+}
+.button-set{
+    display: none;
+}
+
+
+
+
+
+

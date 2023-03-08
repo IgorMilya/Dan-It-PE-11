@@ -7,12 +7,11 @@ export class Card {
         this.email = email
         this.username = username
         this.postId = id
-
     }
 
     showCard(isActive = false) {
-        let wrapper = document.querySelector(".wrapper");
-        let li = document.createElement("li");
+        const wrapper = document.querySelector(".wrapper");
+        const li = document.createElement("li");
         li.classList.add("wrapper-list")
         li.dataset.id = `${this.postId}`
         li.innerHTML = `
@@ -23,8 +22,9 @@ export class Card {
                   </div>
                  <button class="delete-btn">delete</button>
               </div>
+                           
               <h2>${this.title}</h2>
-              <p>${this.body}</p>
+              <p>${this.body}</p>             
            `
 
         if (isActive === true) {
@@ -34,11 +34,12 @@ export class Card {
         }
 
         const deleteButton = li.querySelector('.delete-btn');
+
         deleteButton.addEventListener('click', () => this.deleteCard.bind(this)());
     }
 
     async deleteCard() {
-        let wrapper = document.querySelector(".wrapper");
+        const wrapper = document.querySelector(".wrapper");
         const response = await fetch(`https://ajax.test-danit.com/api/json/posts/${this.postId}`, {
             method: "DELETE"
         })
@@ -53,6 +54,5 @@ export class Card {
         const isActive = true;
         await request("https://ajax.test-danit.com/api/json/posts", "POST", this)
         this.showCard(isActive);
-
     }
 }

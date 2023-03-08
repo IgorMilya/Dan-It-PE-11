@@ -2,8 +2,8 @@ import {request} from "./fetch.js";
 import {Card} from "./Card.js";
 
 
-let loader = document.querySelector(".lds-ellipsis");
-let scrim = document.querySelector(".scrim")
+const loader = document.querySelector(".lds-ellipsis");
+const scrim = document.querySelector(".scrim")
 const form = document.querySelector(".main_data");
 const bntPost = document.querySelector(".bnt-post");
 
@@ -39,3 +39,5 @@ form.addEventListener("submit", async (e) => {
     inputBody.value = ""
     scrim.style.display = "none"
 })
+
+
