@@ -10,7 +10,7 @@ class Modal extends Component {
 
 
     render() {
-        const {header, closeButton, text, actions, isOpened, backgroundModal, backgroundHeader, subText} = this.props
+        const {header, closeButton, actions, isOpened, backgroundModal, backgroundHeader, subText} = this.props
         return (
             (isOpened &&
                 <div className={s.modalWrapper}>
@@ -21,7 +21,6 @@ class Modal extends Component {
                             <div className={s.cross} onClick={closeButton}></div>
                         </div>
                         <div className={s.textBox}>
-                            <p className={s.text}>{text}</p>
                             <p className={cn(s.text, s.subtext)}>{subText}</p>
                             {actions}
                         </div>

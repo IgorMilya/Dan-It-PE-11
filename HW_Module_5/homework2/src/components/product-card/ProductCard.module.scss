@@ -84,7 +84,22 @@
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
+}
 
+.oldPrice {
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  color: #FC2D85;
+  position: relative;
+}
+.oldPrice:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #FC2D85;
+  top: 50%;
 }
 
 .productCardRating {
