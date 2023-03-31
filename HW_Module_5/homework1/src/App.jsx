@@ -51,7 +51,7 @@ class App extends Component {
                 <Button
                     backgroundColor="blue"
                     text={'Open second modal'}
-                    onClick={() => this.setSecondState('second')}
+                    onClick={() => this.setSecondState()}
                 />
 
                 <Modal

@@ -1,0 +1,43 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #7D33E0;
+}
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container{
+  width: 1320px;
+  margin: 0 auto;
+}
+
+.headerTitle {
+  font-size: 24px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  color: white;
+}
+
+.headerBox {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.headerWishlist {
+  margin-right: 20px;
+}
+.headerWishText{
+  margin-right: 5px;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+.cart{
+  display: flex;
+  align-items: center;
+}
