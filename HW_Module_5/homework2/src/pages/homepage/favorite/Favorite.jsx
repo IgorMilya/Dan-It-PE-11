@@ -30,7 +30,7 @@ class Favorite extends Component {
 }
 
 Favorite.propTypes = {
-    favorite: PropTypes.array,
-    deleteProductInFavorite: PropTypes.func,
+    favorite: PropTypes.array.isRequired,
+    deleteProductInFavorite: PropTypes.func.isRequired,
 }
 export default Favorite

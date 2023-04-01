@@ -70,10 +70,11 @@ class ProductCard extends Component {
 }
 
 ProductCard.propTypes = {
-    data: PropTypes.object,
-    setModalData: PropTypes.func,
-    addProductInFavorite: PropTypes.func,
-    deleteProductInFavorite: PropTypes.func
+    data: PropTypes.object.isRequired,
+    setModalData: PropTypes.func.isRequired,
+    addProductInFavorite: PropTypes.func.isRequired,
+    deleteProductInFavorite: PropTypes.func.isRequired
 }
+
 
 export default ProductCard

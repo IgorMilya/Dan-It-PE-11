@@ -60,12 +60,13 @@ class ProductList extends Component {
         )
     }
 }
+
 ProductList.propTypes = {
-    products: PropTypes.array,
-    addProductInCart: PropTypes.func,
-    addProductInFavorite: PropTypes.func,
-    deleteProductInFavorite: PropTypes.func,
-    setModalData: PropTypes.func
+    products: PropTypes.array.isRequired,
+    addProductInCart: PropTypes.func.isRequired,
+    addProductInFavorite: PropTypes.func.isRequired,
+    deleteProductInFavorite: PropTypes.func.isRequired,
+    setModalData: PropTypes.func.isRequired
 }
 
 export default ProductList
