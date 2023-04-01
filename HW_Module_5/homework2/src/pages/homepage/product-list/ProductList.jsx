@@ -26,7 +26,7 @@ class ProductList extends Component {
 
     render() {
         const {categories} = this.state;
-        const {products, addProductInCart, addProductInFavorite, deleteProductInFavorite, setModalData} = this.props;
+        const {products, addProductInFavorite, deleteProductInFavorite, setModalData} = this.props;
 
         return (
             <section className={s.container}>
@@ -44,7 +44,6 @@ class ProductList extends Component {
                                             <ProductCard
                                                 data={data}
                                                 key={data.id}
-                                                addProductInCart={addProductInCart}
                                                 addProductInFavorite={addProductInFavorite}
                                                 deleteProductInFavorite={deleteProductInFavorite}
                                                 setModalData={setModalData}
@@ -63,7 +62,6 @@ class ProductList extends Component {
 
 ProductList.propTypes = {
     products: PropTypes.array.isRequired,
-    addProductInCart: PropTypes.func.isRequired,
     addProductInFavorite: PropTypes.func.isRequired,
     deleteProductInFavorite: PropTypes.func.isRequired,
     setModalData: PropTypes.func.isRequired

@@ -9,4 +9,3 @@ export const request = (url, method, body) => {
     })
         .then(res => res.json())
 }
-

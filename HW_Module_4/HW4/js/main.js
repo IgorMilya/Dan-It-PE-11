@@ -2,8 +2,8 @@ import {request} from "./fetch.js";
 
 request("https://ajax.test-danit.com/api/swapi/films", 'GET')
     .then(data => data.forEach(item => {
-        let mainDiv = document.createElement("div");
-        let div = document.createElement("div");
+        const mainDiv = document.createElement("div");
+        const div = document.createElement("div");
         const {characters, episodeId, name, openingCrawl} = item;
 
         div.innerHTML = `
@@ -16,25 +16,22 @@ request("https://ajax.test-danit.com/api/swapi/films", 'GET')
         mainDiv.append(div);
 
         const listOfName = characters.map(item => {
-            return request(`${item}`, 'GET')
-                .then(info => {
-                    const {name} = info;
-                    return name
-                })
+            return request(item, 'GET')
+                .then(({name}) => name)
         })
 
         Promise.all(listOfName)
             .then(dataset => {
-                let ol = document.createElement("ol")
-                dataset.forEach(element => {
-                    let li = document.createElement("li")
+                const ol = document.createElement("ol")
+                return dataset.map(element => {
+                    const li = document.createElement("li")
                     li.textContent = `${element}`;
                     ol.append(li)
                 })
-                mainDiv.append(ol)
-            })
-    }))
+            }).then(res => console.log(res))
 
+
+    }))
 
 
 // async await method

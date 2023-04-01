@@ -1,7 +1,6 @@
 import {request} from "./fetch.js";
 import {Card} from "./Card.js";
 
-
 const loader = document.querySelector(".lds-ellipsis");
 const scrim = document.querySelector(".scrim")
 const form = document.querySelector(".main_data");
@@ -27,6 +26,7 @@ bntPost.addEventListener("click", () => scrim.style.display = "flex")
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
     const inputTitle = document.querySelector("#title")
     const inputBody = document.querySelector("#body")
     const twitterCard = new Card({title: inputTitle.value, body: inputBody.value, id: 1}, {

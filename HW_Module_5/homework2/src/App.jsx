@@ -142,7 +142,7 @@ class App extends Component {
                 <AntdContent>
                     {!isShowedCart && !isShowedFavorite &&
                         <ProductList
-                            products={products} addProductInCart={this.addProductInCart}
+                            products={products}
                             addProductInFavorite={this.addProductInFavorite}
                             deleteProductInFavorite={this.deleteProductInFavorite}
                             setModalData={this.setModalData}
