@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {request} from "../../../tools/request";
 import ProductCard from "../../../components/product-card";
 import s from "./ProductList.module.scss"
+import PropTypes from "prop-types";
 
 class ProductList extends Component {
     constructor(props) {
@@ -22,9 +23,11 @@ class ProductList extends Component {
         this.getProductsCategories()
     }
 
+
     render() {
         const {categories} = this.state;
-        const {products, addProductInCart, addProductInFavorite, deleteProductInFavorite} = this.props;
+        const {products, addProductInCart, addProductInFavorite, deleteProductInFavorite, setModalData} = this.props;
+
         return (
             <section className={s.container}>
                 {categories.map((category) => {
@@ -34,19 +37,35 @@ class ProductList extends Component {
                     return (
                         <div key={category} className={s.productList}>
                             <h1 className={s.productListTitle}>{firstCapitalLetter}</h1>
-                            <div className={s.productCardBox}>
-                                <ProductCard category={category} products={products} addProductInCart={addProductInCart}
-                                             addProductInFavorite={addProductInFavorite}
-                                             deleteProductInFavorite={deleteProductInFavorite}/>
-
-                            </div>
+                            <ul className={s.productCardBox}>
+                                {products.map((data) => {
+                                    if (data.category === category) {
+                                        return (
+                                            <ProductCard
+                                                data={data}
+                                                key={data.id}
+                                                addProductInCart={addProductInCart}
+                                                addProductInFavorite={addProductInFavorite}
+                                                deleteProductInFavorite={deleteProductInFavorite}
+                                                setModalData={setModalData}
+                                            />
+                                        )
+                                    }
+                                })}
+                            </ul>
                         </div>
                     )
                 })}
             </section>
-
         )
     }
+}
+ProductList.propTypes = {
+    products: PropTypes.array,
+    addProductInCart: PropTypes.func,
+    addProductInFavorite: PropTypes.func,
+    deleteProductInFavorite: PropTypes.func,
+    setModalData: PropTypes.func
 }
 
 export default ProductList

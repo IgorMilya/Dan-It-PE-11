@@ -1,101 +1,79 @@
 import {Component} from "react";
 import s from "./ProductCard.module.scss"
-import Actions from "./actions/Actions";
-import Modal from "../../UI/modal";
-import Button from "../../UI/button";
+import {HeartFilled, HeartOutlined, ShoppingCartOutlined} from "@ant-design/icons";
+import PropTypes from "prop-types";
 
 
 class ProductCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isFilled: false,
             isOpened: false
         }
     }
 
-    setIsModal() {
-        this.setState({isOpened: true})
+    componentDidMount() {
+        const {data} = this.props;
+        const favoriteProducts = localStorage.getItem('favoriteProducts');
+
+        if (favoriteProducts) {
+            const productsStorage = JSON.parse(favoriteProducts);
+            productsStorage.forEach(item => {
+                if (item.id === data.id) {
+                    const {isFilled} = item
+                    this.setState({isFilled});
+                }
+            })
+        }
     }
 
-    resetIsModal() {
-        this.setState({isOpened: false})
-    }
+    setFilled() {
+        const {isFilled} = this.state;
+        const {data, addProductInFavorite, deleteProductInFavorite} = this.props;
+        this.setState({isFilled: !isFilled})
 
-    renderCard() {
-        const {category, products, addProductInCart, addProductInFavorite, deleteProductInFavorite} = this.props;
-        const {isOpened} = this.state;
-
-        return products.map((data) => {
-
-
-            const actions = (
-                <>
-                    <Button
-                        backgroundColor={"darkred"}
-                        text={"Ok"}
-                        onClick={() => {
-                            addProductInCart(data)
-                            this.resetIsModal()
-                        }}
-                        className={'modal-button'}
-                    />
-                    <Button
-                        backgroundColor={"darkred"}
-                        text={"Cancel"}
-                        onClick={() => this.resetIsModal()}
-                        className={'modal-button'}
-                    />
-                </>
-            )
-
-            if (data.category === category) {
-                const {id, image, price, title, rating: {rate}} = data
-
-                return (
-                    <>
-                        <div key={id} className={s.productCard}>
-                            <div className={s.productCardBgImg}>
-                                <div className={s.productCardImg}>
-                                    <img src={image} alt="product"/>
-                                </div>
-                                <Actions data={data} addProductInCart={addProductInCart}
-                                         addProductInFavorite={addProductInFavorite}
-                                         deleteProductInFavorite={deleteProductInFavorite}
-                                         setIsModal={() => this.setIsModal()}
-                                />
-
-                            </div>
-                            <div className={s.textContent}>
-                                <h1 className={s.productCardTitle}>{title}</h1>
-                                <span className={s.productCardPrice}>Price: ${(price - price / 10).toFixed(2)}
-                                    <span className={s.oldPrice}> ${price} </span>
-                                </span>
-                                <p className={s.productCardRating}>Rating: {rate}</p>
-                            </div>
-                        </div>
-                        <Modal
-                            isOpened={isOpened}
-                            backgroundModal={'firstModal'}
-                            backgroundHeader={'firstHeader'}
-                            header={'Do u wanna add this product?'}
-                            subText={'Are you sure you wanna add it?'}
-                            closeButton={() => this.resetIsModal()}
-                            actions={actions}
-                        />
-                    </>
-                )
-            }
-
-        })
+        !isFilled ? addProductInFavorite(data, !isFilled) : deleteProductInFavorite(data)
     }
 
     render() {
+        const {data, setModalData} = this.props;
+        const {isFilled} = this.state;
+        const {image, price, title, rating: {rate}} = data
+
         return (
-            <>
-                {this.renderCard()}
-            </>
+                <li className={s.productCard}>
+                    <div className={s.productCardBgImg}>
+                        <div className={s.productCardImg}>
+                            <img src={image} alt="product"/>
+                        </div>
+
+                        <div className={s.action}>
+                            <ShoppingCartOutlined className={s.actionCart} onClick={() => setModalData(data)}/>
+
+                            {!isFilled && <HeartOutlined className={s.actionHeart} onClick={() => this.setFilled()}/>}
+
+                            {isFilled && <HeartFilled className={s.actionHeart} onClick={() => this.setFilled()}/>}
+                        </div>
+                    </div>
+
+                    <div className={s.textContent}>
+                        <h1 className={s.productCardTitle}>{title}</h1>
+                        <p className={s.productCardPrice}>Price: ${(price - price / 10).toFixed(2)}
+                            <span className={s.oldPrice}> ${price} </span>
+                        </p>
+                        <p className={s.productCardRating}>Rating: {rate}</p>
+                    </div>
+                </li>
         )
     }
+}
+
+ProductCard.propTypes = {
+    data: PropTypes.object,
+    setModalData: PropTypes.func,
+    addProductInFavorite: PropTypes.func,
+    deleteProductInFavorite: PropTypes.func
 }
 
 export default ProductCard
