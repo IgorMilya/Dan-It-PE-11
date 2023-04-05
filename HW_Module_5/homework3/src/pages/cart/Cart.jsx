@@ -1,12 +1,14 @@
 import React from "react";
 import s from "./Cart.module.scss"
 import PropTypes from "prop-types";
+import {useOutletContext} from "react-router-dom";
+import {CloseCircleFilled} from "@ant-design/icons";
 
-const Cart = ({cart, deleteProductInCart}) => {
-
+const Cart = () => {
+    const [{cartProducts, setSecondModalData}] = useOutletContext()
     return (
         <>
-            {!!cart &&
+            {!!cartProducts &&
                 <>
                     <div className={s.cartBackground}>
                         <h1 className={s.cartTitle}>Shopping Cart</h1>
@@ -22,7 +24,7 @@ const Cart = ({cart, deleteProductInCart}) => {
                             </ul>
 
                             <ul className={s.cartListProduct}>
-                                {cart.map((item) => {
+                                {cartProducts.map((item) => {
                                     const {images, price, title} = item
                                     const discountPrice = (price - price / 10).toFixed(0)
                                     return (
@@ -31,15 +33,19 @@ const Cart = ({cart, deleteProductInCart}) => {
                                                 <div className={s.cartBackgroundImg}>
                                                     <div className={s.cartImgBox}>
                                                         <img className={s.cartImg} src={images[0]} alt="product"/>
+                                                        <CloseCircleFilled
+                                                            className={s.cartCross}
+                                                            onClick={() => setSecondModalData(item)}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <p className={s.cartProductTitle}>{title}</p>
                                             </div>
                                             <div className={s.cartProductItem}>${discountPrice}</div>
                                             <div className={s.cartProductItem}>
-                                                <div className={s.counterAction}>+</div>
+                                                <button className={s.counterAction}>+</button>
                                                 <span className={s.counter}>1</span>
-                                                <div className={s.counterAction}>-</div>
+                                                <button className={s.counterAction}>-</button>
                                             </div>
                                             <div className={s.cartProductItem}>${discountPrice * 1}</div>
                                         </li>
@@ -51,7 +57,7 @@ const Cart = ({cart, deleteProductInCart}) => {
                 </>
             }
             {
-                cart.length === 0 &&
+                cartProducts.length === 0 &&
                 <p>No Items</p>
             }
         </>

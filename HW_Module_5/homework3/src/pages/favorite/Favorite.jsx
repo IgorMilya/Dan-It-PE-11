@@ -1,14 +1,16 @@
 import React from "react";
 import s from "./Favorite.module.scss"
 import PropTypes from "prop-types";
+import {useOutletContext} from "react-router-dom";
 
-const Favorite = ({favorite, deleteProductInFavorite}) => {
+const Favorite = () => {
+    const [{favoriteProducts, deleteProductInFavorite}] = useOutletContext()
 
         return (
             <>
-                {!!favorite &&
+                {!!favoriteProducts &&
                     <ul>
-                        {favorite.map((item) => {
+                        {favoriteProducts.map((item) => {
                             return (
                                 <li key={item.id} className={s.favoriteProduct}
                                     onClick={() => deleteProductInFavorite(item)}>
@@ -18,15 +20,12 @@ const Favorite = ({favorite, deleteProductInFavorite}) => {
                         })}
                     </ul>
                 }
-                {favorite.length === 0 &&
+                {favoriteProducts.length === 0 &&
                     <p>No Items</p>
                 }
             </>
         )
 }
 
-Favorite.propTypes = {
-    favorite: PropTypes.array,
-    deleteProductInFavorite: PropTypes.func,
-}
+
 export default Favorite

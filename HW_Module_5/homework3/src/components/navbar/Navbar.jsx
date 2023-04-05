@@ -4,39 +4,35 @@ import cn from "classnames";
 import s from "./Navbar.module.scss";
 import {HeartOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import PropTypes from "prop-types";
+import {NavLink} from "react-router-dom";
 
-const Navbar = (props) => {
-
-
-    const {setIsShowed, favoriteProducts, cartProducts} = props
+const Navbar = ({favoriteProducts, cartProducts}) => {
 
     return (
         <div className={cn(s.navbar, s.container)}>
             <div className={s.navbarText}>
                 <a href="#" className={s.headerTitle}>Hekto</a>
-                <a href="#" className={s.headerProducts}
-                   onClick={() => setIsShowed(false, false)}> Products</a>
+                <NavLink to="/product" className={({isActive}) => (isActive ? cn(s.headerProducts, s.activeLink) : s.headerProducts)}>
+                    Products
+                </NavLink>
             </div>
             <div className={s.headerBox}>
-                <a href="#" className={s.headerWishlist} onClick={() => setIsShowed(false, true)}>
+                <NavLink to="/favorite" className={({isActive}) => (isActive ? cn(s.headerWishlist, s.activeLink) : s.headerWishlist)}>
                     <span className={s.headerWishText}>Wishlist</span>
                     <HeartOutlined/>
                     <span className={s.cartCount}>{favoriteProducts.length || 0}</span>
-                </a>
-                <a href="#" className={s.cart}>
-                    <ShoppingCartOutlined
-                    style={{fontSize: "22px"}}
-                    onClick={() => setIsShowed(true, false)}
-                    />
+                </NavLink>
+                <NavLink to="/cart" className={({isActive}) => (isActive ? cn(s.cart, s.activeLink) : s.cart)}>
+                    <ShoppingCartOutlined style={{fontSize: "22px"}}/>
                     <span className={s.cartCount}>{cartProducts.length || 0}</span>
-                </a>
+                </NavLink>
             </div>
         </div>
     )
 }
 export default Navbar
 
-Navbar.prototype={
+Navbar.prototype = {
     setIsShowed: PropTypes.func.isRequired,
     favoriteProducts: PropTypes.array.isRequired,
     cartProducts: PropTypes.array.isRequired

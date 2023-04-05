@@ -2,11 +2,11 @@ import React, {useEffect, useState} from "react";
 import s from "./Actions.module.scss"
 import {HeartFilled, HeartOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import PropTypes from "prop-types";
+import {useOutletContext} from "react-router-dom";
 
-const Actions = (props) => {
+const Actions = ({data, cardHover}) => {
     const [isFilled, serIsFilled] = useState(false)
-
-    const {data, addProductInFavorite, deleteProductInFavorite, setModalData, cardHover} = props;
+    const [{addProductInFavorite, deleteProductInFavorite, setModalData}] = useOutletContext()
 
     useEffect(() => {
         const favoriteProducts = localStorage.getItem('favoriteProducts');
@@ -41,11 +41,3 @@ const Actions = (props) => {
     )
 }
 export default Actions
-
-Actions.propTypes = {
-    data: PropTypes.object.isRequired,
-    setModalData: PropTypes.func.isRequired,
-    addProductInFavorite: PropTypes.func.isRequired,
-    deleteProductInFavorite: PropTypes.func.isRequired,
-    cardHover: PropTypes.bool.isRequired
-}

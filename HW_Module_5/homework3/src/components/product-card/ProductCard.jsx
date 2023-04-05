@@ -4,12 +4,11 @@ import s from "./ProductCard.module.scss"
 import PropTypes from "prop-types";
 
 
-const ProductCard = (props) => {
+const ProductCard = ({data}) => {
     const [cardHover, setCardHover] = useState(false);
     const cardRef = useRef()
-    const {data, addProductInFavorite, deleteProductInFavorite, setModalData} = props;
-    const {images, price, title, rating} = data
 
+    const {images, price, title, rating} = data
     useEffect(() => {
         const element = cardRef.current
         if (element) {
@@ -26,9 +25,6 @@ const ProductCard = (props) => {
                 </div>
                 <Actions
                     data={data}
-                    addProductInFavorite={addProductInFavorite}
-                    deleteProductInFavorite={deleteProductInFavorite}
-                    setModalData={setModalData}
                     cardHover={cardHover}
                 />
             </div>
@@ -44,12 +40,6 @@ const ProductCard = (props) => {
     )
 }
 
-ProductCard.propTypes = {
-    data: PropTypes.object.isRequired,
-    setModalData: PropTypes.func.isRequired,
-    addProductInFavorite: PropTypes.func.isRequired,
-    deleteProductInFavorite: PropTypes.func.isRequired
-}
 
 
 export default ProductCard

@@ -14,9 +14,8 @@ const ContentWrapper = () => {
     const [products, setProducts] = useState([])
     const [favorite, setFavorite] = useState([])
     const [cardData, setCardData] = useState({})
-    const [isOpened, setIsOpened] = useState(false)
-    // const [isShowedCart, setIsShowedCart] = useState(false)
-    // const [isShowedFavorite, setIsShowedFavorite] = useState(false)
+    const [isFirstOpened, setFirstIsOpened] = useState(false)
+    const [isSecondOpened, setSecondIsOpened] = useState(false)
 
     const cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
     const favoriteProducts = JSON.parse(localStorage.getItem('favoriteProducts')) || [];
@@ -31,13 +30,13 @@ const ContentWrapper = () => {
     }, [])
 
     useEffect(() => {
-        isOpened ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto')
-    }, [isOpened])
+        isFirstOpened ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto')
+    }, [isFirstOpened])
 
 
     const addProductInCart = useCallback((item) => {
         setCart(prevState => [...prevState, item])
-        setIsOpened(false)
+        setFirstIsOpened(false)
         addLocalProduct(item, 'cartProducts')
     }, [cart])
 
@@ -56,6 +55,8 @@ const ContentWrapper = () => {
     const deleteProductInCart = useCallback((item) => {
         const newCart = [...cart].filter(el => el.id !== item.id)
         setCart(newCart)
+        setSecondIsOpened(false)
+
         deleteLocalProduct(item, 'cartProducts')
     }, [cart])
 
@@ -71,15 +72,14 @@ const ContentWrapper = () => {
         localStorage.setItem(`${storage}`, JSON.stringify(newStorage));
     }
 
-
-    // const setIsShowed = (cart, favorite) => {
-    //     setIsShowedCart(cart)
-    //     setIsShowedFavorite(favorite)
-    // }
-
     const setModalData = useCallback((data) => {
         setCardData(data)
-        setIsOpened(true)
+        setFirstIsOpened(true)
+    }, [cardData])
+
+    const setSecondModalData = useCallback((data) => {
+        setCardData(data)
+        setSecondIsOpened(true)
     }, [cardData])
 
     const actionsAddToCart = (<>
@@ -92,7 +92,22 @@ const ContentWrapper = () => {
         <Button
             backgroundColor={"darkred"}
             text={"Cancel"}
-            onClick={() => setIsOpened(false)}
+            onClick={() => setFirstIsOpened(false)}
+            className={'modal-button'}
+        />
+    </>)
+
+    const actionsRemoveFromCart = (<>
+        <Button
+            backgroundColor={"darkblue"}
+            text={"Ok"}
+            onClick={() => deleteProductInCart(cardData)}
+            className={'modal-button'}
+        />
+        <Button
+            backgroundColor={"darkblue"}
+            text={"Cancel"}
+            onClick={() => setSecondIsOpened(false)}
             className={'modal-button'}
         />
     </>)
@@ -101,7 +116,6 @@ const ContentWrapper = () => {
         <AntdLayout>
             <AntdHeader className={s.header}>
                 <Navbar
-                    // setIsShowed={setIsShowed}
                     favoriteProducts={favoriteProducts}
                     cartProducts={cartProducts}
                 />
@@ -110,19 +124,32 @@ const ContentWrapper = () => {
             <AntdContent>
                 <Outlet
                     context={
-                    [products, addProductInFavorite, deleteProductInFavorite,
-                        setModalData, deleteProductInCart, cartProducts, favoriteProducts]}
+                        [{
+                            products, addProductInFavorite, deleteProductInFavorite,
+                            setModalData, cartProducts, favoriteProducts, setSecondModalData
+                        }]}
                 />
+
             </AntdContent>
 
             <Modal
-                isOpened={isOpened}
+                isOpened={isFirstOpened}
                 backgroundModal={'firstModal'}
                 backgroundHeader={'firstHeader'}
                 header={'Do u wanna add this product?'}
                 subText={'Are you sure you wanna add it?'}
-                closeButton={() => setIsOpened(false)}
+                closeButton={() => setFirstIsOpened(false)}
                 actions={actionsAddToCart}
+            />
+
+            <Modal
+                isOpened={isSecondOpened}
+                backgroundModal={'secondModal'}
+                backgroundHeader={'secondHeader'}
+                header={'Do u wanna delete this product?'}
+                subText={'Are you sure you wanna delete it?'}
+                closeButton={() => setSecondIsOpened(false)}
+                actions={actionsRemoveFromCart}
             />
         </AntdLayout>)
 }

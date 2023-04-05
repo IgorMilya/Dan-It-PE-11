@@ -9,5 +9,4 @@ export const ROUTER = {
     PRODUCT: {path: "product", element: <ProductList />},
     CART: {path: "cart", element: <Cart />},
     FAVORITE: {path: "favorite", element: <Favorite />},
-
 }

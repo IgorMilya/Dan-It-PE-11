@@ -3,9 +3,11 @@ import {request} from "../../../../tools/request";
 import ProductCard from "../../../../components/product-card";
 import s from "./ProductList.module.scss"
 import PropTypes from "prop-types";
+import {useOutletContext} from "react-router-dom";
 
-const ProductList = (props) => {
+const ProductList = () => {
     const [categories, setCategories] = useState([])
+    const [{products}] = useOutletContext()
 
     const getProductsCategories = async () => {
         const {res} = await request({url: '/categories'});
@@ -16,8 +18,6 @@ const ProductList = (props) => {
     useEffect(() => {
         getProductsCategories()
     }, [])
-
-    const {products, addProductInFavorite, deleteProductInFavorite, setModalData} = props;
 
     return (
         <section className={s.container}>
@@ -35,9 +35,6 @@ const ProductList = (props) => {
                                         <ProductCard
                                             data={data}
                                             key={data.id}
-                                            addProductInFavorite={addProductInFavorite}
-                                            deleteProductInFavorite={deleteProductInFavorite}
-                                            setModalData={setModalData}
                                         />
                                     )
                             })}
@@ -49,11 +46,5 @@ const ProductList = (props) => {
     )
 }
 
-ProductList.propTypes = {
-    products: PropTypes.array,
-    addProductInFavorite: PropTypes.func,
-    deleteProductInFavorite: PropTypes.func,
-    setModalData: PropTypes.func
-}
 
 export default ProductList

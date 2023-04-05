@@ -1,5 +1,5 @@
 import React from "react";
-import {Routes, Route} from "react-router-dom";
+import {Routes, Route, Navigate} from "react-router-dom";
 import {ROUTER} from "./router.utils";
 
 const Router = () => {
@@ -10,6 +10,7 @@ const Router = () => {
                 <Route path={ROUTER.CART.path} element={ROUTER.CART.element}/>
                 <Route path={ROUTER.FAVORITE.path} element={ROUTER.FAVORITE.element}/>
             </Route>
+            <Route path="/*" element={<Navigate to={ROUTER.PRODUCT.path} />} />
         </Routes>
     );
 };
