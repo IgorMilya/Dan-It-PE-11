@@ -1,14 +1,16 @@
-.navbar{
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
 }
-.container{
+
+.container {
   width: 1320px;
   margin: 0 auto;
 }
-.navbarText{
+
+.navbarText {
   display: flex;
   align-items: center;
 }
@@ -20,13 +22,15 @@
   color: white;
   margin-right: 100px;
 }
-.headerProducts{
+
+.headerProducts {
   font-size: 16px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   color: white;
 
 }
+
 .headerBox {
   display: flex;
   align-items: center;
@@ -36,20 +40,20 @@
 .headerWishlist {
   margin-right: 20px;
 }
-.headerWishText{
+
+.headerWishText {
   margin-right: 5px;
   font-size: 16px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
 }
-.cart{
+
+.cart {
   display: flex;
   align-items: center;
   position: relative;
 }
-.cartCount{
 
-}
 .activeLink {
   color: #1a73e8;
 }
