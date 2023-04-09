@@ -44,7 +44,7 @@ const ContentWrapper = () => {
 
     setStateProduct(prevState => [...prevState, item])
     !!setOpened && setOpened(false)
-  }, [])
+  }, [favorite, cart])
 
   const removeAllProducts = useCallback(({item, storage, data, setStateProduct, setOpened}) => {
     const storageArray = JSON.parse(localStorage.getItem(`${storage}`)) || [];
@@ -54,7 +54,7 @@ const ContentWrapper = () => {
     setStateProduct(newState)
     !!setOpened && setOpened(false)
     localStorage.setItem(`${storage}`, JSON.stringify(newStorage));
-  }, [])
+  }, [favorite, cart])
 
   const setModalData = (data) => {
     setCardData(data)

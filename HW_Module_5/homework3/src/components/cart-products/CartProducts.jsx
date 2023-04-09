@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import {useOutletContext} from "react-router-dom";
 import s from "./CartProducts.module.scss";
 import {CloseCircleFilled} from "@ant-design/icons";
@@ -13,9 +13,9 @@ const CartProducts = ({item}) => {
   const disabled = counter === 1 && "disabled"
 
 //TODO rewrite
-  const removeProduct = () => {
+  const removeProduct = useCallback(() => {
     const storageIndex = cartProducts.findIndex(el => el.id === item.id)
-    console.log(storageIndex)
+
     if (storageIndex !== -1) {
       const newStorage = cartProducts.splice(storageIndex, (counter - 1))
       localStorage.setItem('cartProducts', JSON.stringify(newStorage));
@@ -26,7 +26,7 @@ const CartProducts = ({item}) => {
       const newCart = cartProducts.splice(cartIndex, 1)
       setCart(newCart)
     }
-  }
+  }, [counter])
 //
   const handleClick = (type) => {
     if (type === '+') {

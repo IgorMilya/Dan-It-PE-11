@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {Link, useOutletContext} from "react-router-dom";
 import s from "./HoverActions.module.scss"
 import {CheckCircleFilled, HeartFilled, HeartOutlined, ShoppingCartOutlined} from "@ant-design/icons";
@@ -10,18 +10,17 @@ const HoverActions = ({data, cardHover}) => {
 
   const [{addProduct, removeAllProducts, setModalData, setFavorite, favorite, cart}] = useOutletContext()
 
-  const savedProducts = (storagePlace, setValue) => {
+  const savedProducts = useCallback((storagePlace, setValue) => {
     const products = localStorage.getItem(`${storagePlace}`);
     if (!products) return
     const storage = JSON.parse(products);
 
     storage.forEach(item => {
       const {id, isFilled, isChecked} = item
-
       if (id !== data.id) return
       setValue(isFilled || isChecked)
     })
-  }
+  }, [isFilled, isChecked])
 
   useEffect(() => {
     savedProducts("cartProducts", setIsChecked)
