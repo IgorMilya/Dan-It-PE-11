@@ -6,7 +6,9 @@ import PropTypes from "prop-types";
 
 const CartProducts = ({item}) => {
   const [{setSecondModalData, addProduct, setCart, cartProducts, cart}] = useOutletContext()
-  const [counter, setCounter] = useState(1)
+  const initialCounter = cartProducts.filter(el => el.id === item.id)
+
+  const [counter, setCounter] = useState(initialCounter.length)
 
   const {images, price, title} = item
   const discountPrice = (price - price / 10).toFixed(0)
