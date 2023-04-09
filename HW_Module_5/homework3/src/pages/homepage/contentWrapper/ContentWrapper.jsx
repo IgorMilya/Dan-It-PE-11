@@ -10,8 +10,8 @@ import {Layout as AntdLayout} from "antd";
 const {Header: AntdHeader, Content: AntdContent} = AntdLayout;
 
 const ContentWrapper = () => {
-  const [cart, setCart] = useState([])
   const [products, setProducts] = useState([])
+  const [cart, setCart] = useState([])
   const [favorite, setFavorite] = useState([])
   const [cardData, setCardData] = useState({})
   const [isFirstOpened, setFirstIsOpened] = useState(false)

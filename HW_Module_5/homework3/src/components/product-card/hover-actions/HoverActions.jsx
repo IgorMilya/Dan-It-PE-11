@@ -22,14 +22,6 @@ const HoverActions = ({data, cardHover}) => {
     })
   }, [isFilled, isChecked])
 
-  useEffect(() => {
-    savedProducts("cartProducts", setIsChecked)
-  }, [cart])
-
-  useEffect(() => {
-    savedProducts("favoriteProducts", serIsFilled)
-  }, [favorite])
-
   const addFavorite = () => {
     addProduct({
       item: data,
@@ -49,6 +41,14 @@ const HoverActions = ({data, cardHover}) => {
     })
     serIsFilled(false)
   }
+
+  useEffect(() => {
+    savedProducts("cartProducts", setIsChecked)
+  }, [cart])
+
+  useEffect(() => {
+    savedProducts("favoriteProducts", serIsFilled)
+  }, [favorite])
 
   return (
     <>
