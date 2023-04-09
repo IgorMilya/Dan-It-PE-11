@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {Link, useOutletContext} from "react-router-dom";
-import s from "./Actions.module.scss"
+import s from "./HoverActions.module.scss"
 import {CheckCircleFilled, HeartFilled, HeartOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import PropTypes from "prop-types";
 
-const Actions = ({data, cardHover}) => {
+const HoverActions = ({data, cardHover}) => {
   const [isFilled, serIsFilled] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
 
@@ -31,7 +31,6 @@ const Actions = ({data, cardHover}) => {
     savedProducts("favoriteProducts", serIsFilled)
   }, [favorite])
 
-  //rewrite
   const addFavorite = () => {
     addProduct({
       item: data,
@@ -51,7 +50,6 @@ const Actions = ({data, cardHover}) => {
     })
     serIsFilled(false)
   }
-//
 
   return (
     <>
@@ -74,5 +72,15 @@ const Actions = ({data, cardHover}) => {
   )
 }
 
+export default HoverActions
 
-export default Actions
+HoverActions.prototype = {
+  cart: PropTypes.array.isRequired,
+  data: PropTypes.object.isRequired,
+  favorite: PropTypes.array.isRequired,
+  cardHover: PropTypes.bool.isRequired,
+  addProduct: PropTypes.func.isRequired,
+  setFavorite: PropTypes.func.isRequired,
+  setModalData: PropTypes.func.isRequired,
+  removeAllProducts: PropTypes.func.isRequired,
+}

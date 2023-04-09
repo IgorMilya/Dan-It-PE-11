@@ -43,5 +43,8 @@ const ProductList =  () => {
   )
 }
 
-
 export default ProductList
+
+ProductList.prototype = {
+  products: PropTypes.array.isRequired
+}

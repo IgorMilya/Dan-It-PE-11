@@ -10,7 +10,7 @@ const Router = () => {
                 <Route path={ROUTER.CART.path} element={ROUTER.CART.element}/>
                 <Route path={ROUTER.FAVORITE.path} element={ROUTER.FAVORITE.element}/>
             </Route>
-            <Route path="/*" element={<Navigate to={ROUTER.PRODUCT.path} />} />
+            <Route path="*" element={<Navigate to={ROUTER.PRODUCT.path} />} />
         </Routes>
     );
 };

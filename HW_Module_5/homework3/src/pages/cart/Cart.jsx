@@ -1,8 +1,10 @@
 import React from "react";
 import {useOutletContext} from "react-router-dom";
 import CartProducts from "../../components/cart-products";
+import Favorite from "../favorite";
 import cn from "classnames";
 import s from "./Cart.module.scss"
+import PropTypes from "prop-types";
 
 const Cart = () => {
   const [{cartProducts}] = useOutletContext()
@@ -45,3 +47,7 @@ const Cart = () => {
 
 
 export default Cart
+
+Favorite.prototype = {
+  favoriteProducts: PropTypes.array.isRequired,
+}

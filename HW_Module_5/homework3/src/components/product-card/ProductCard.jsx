@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import Actions from "./Actions";
+import HoverActions from "./hover-actions";
 import s from "./ProductCard.module.scss"
 import PropTypes from "prop-types";
 
@@ -25,7 +25,7 @@ const ProductCard = ({data}) => {
         <div className={s.productCardImg}>
           <img src={images[0]} alt="product"/>
         </div>
-        <Actions
+        <HoverActions
           data={data}
           cardHover={cardHover}
         />
@@ -42,5 +42,8 @@ const ProductCard = ({data}) => {
   )
 }
 
-
 export default ProductCard
+
+ProductCard.prototype = {
+  data: PropTypes.object.isRequired
+}

@@ -1,7 +1,8 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useOutletContext} from "react-router-dom";
 import s from "./CartProducts.module.scss";
 import {CloseCircleFilled} from "@ant-design/icons";
+import PropTypes from "prop-types";
 
 const CartProducts = ({item}) => {
   const [{setSecondModalData, addProduct, setCart, cartProducts, cart}] = useOutletContext()
@@ -11,7 +12,7 @@ const CartProducts = ({item}) => {
   const discountPrice = (price - price / 10).toFixed(0)
   const disabled = counter === 1 && "disabled"
 
-//rewrite
+//TODO rewrite
   const removeProduct = () => {
     const storageIndex = cartProducts.findIndex(el => el.id === item.id)
     console.log(storageIndex)
@@ -67,3 +68,13 @@ const CartProducts = ({item}) => {
 }
 
 export default CartProducts
+
+
+CartProducts.prototype = {
+  cart: PropTypes.array.isRequired,
+  item: PropTypes.array.isRequired,
+  setCart: PropTypes.func.isRequired,
+  addProduct: PropTypes.func.isRequired,
+  cartProducts: PropTypes.array.isRequired,
+  setSecondModalData: PropTypes.func.isRequired
+}

@@ -1,11 +1,10 @@
 import React from "react";
-
+import {NavLink} from "react-router-dom";
 import cn from "classnames";
 import s from "./Navbar.module.scss";
 import {HeartOutlined, ShoppingCartOutlined} from "@ant-design/icons";
-import PropTypes from "prop-types";
-import {NavLink} from "react-router-dom";
 import {Badge} from "antd";
+import PropTypes from "prop-types";
 
 const Navbar = ({favoriteProducts, cartProducts}) => {
   const offset = cartProducts.length > 5 && [15, 0];
@@ -42,7 +41,6 @@ const Navbar = ({favoriteProducts, cartProducts}) => {
 export default Navbar
 
 Navbar.prototype = {
-  setIsShowed: PropTypes.func.isRequired,
-  favoriteProducts: PropTypes.array.isRequired,
-  cartProducts: PropTypes.array.isRequired
+  cartProducts: PropTypes.array.isRequired,
+  favoriteProducts: PropTypes.array.isRequired
 }

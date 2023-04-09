@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {request} from "../../../tools/request";
 import {Outlet} from "react-router-dom";
 import Navbar from "../../../components/navbar";
@@ -37,16 +37,16 @@ const ContentWrapper = () => {
     isSecondOpened ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto')
   }, [isSecondOpened])
 
-  const addProduct = ({item, isFilled, storage, setStateProduct, setOpened}) => {
+  const addProduct = useCallback(({item, isFilled, storage, setStateProduct, setOpened}) => {
     const storageArray = JSON.parse(localStorage.getItem(`${storage}`)) || [];
     isFilled ? storageArray.push({...item, isFilled}) : storageArray.push({...item, isChecked: true})
     localStorage.setItem(`${storage}`, JSON.stringify(storageArray));
 
     setStateProduct(prevState => [...prevState, item])
     !!setOpened && setOpened(false)
-  }
+  }, [])
 
-  const removeAllProducts = ({item, storage, data, setStateProduct, setOpened}) => {
+  const removeAllProducts = useCallback(({item, storage, data, setStateProduct, setOpened}) => {
     const storageArray = JSON.parse(localStorage.getItem(`${storage}`)) || [];
     const newStorage = storageArray.filter(el => el.id !== item.id)
     const newState = [...data].filter(el => el.id !== item.id)
@@ -54,7 +54,7 @@ const ContentWrapper = () => {
     setStateProduct(newState)
     !!setOpened && setOpened(false)
     localStorage.setItem(`${storage}`, JSON.stringify(newStorage));
-  }
+  }, [])
 
   const setModalData = (data) => {
     setCardData(data)

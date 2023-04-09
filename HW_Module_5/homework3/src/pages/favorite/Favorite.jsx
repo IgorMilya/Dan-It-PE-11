@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 
 const Favorite = () => {
   const [{favoriteProducts}] = useOutletContext()
+
   return (
     <>
       {!!favoriteProducts &&
@@ -24,3 +25,7 @@ const Favorite = () => {
 }
 
 export default Favorite
+
+Favorite.prototype = {
+  favoriteProducts: PropTypes.array.isRequired,
+}
