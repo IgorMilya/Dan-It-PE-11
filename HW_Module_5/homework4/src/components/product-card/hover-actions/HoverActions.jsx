@@ -20,7 +20,7 @@ const HoverActions = ({data, cardHover}) => {
       if (id !== data.id) return
       setValue(isFilled || isChecked)
     })
-  }, [isFilled, isChecked])
+  }, [data.id])
 
   const addFavorite = () => {
     addProduct({
