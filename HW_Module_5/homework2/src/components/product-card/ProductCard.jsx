@@ -17,15 +17,14 @@ class ProductCard extends Component {
         const {data} = this.props;
         const favoriteProducts = localStorage.getItem('favoriteProducts');
 
-        if (favoriteProducts) {
-            const productsStorage = JSON.parse(favoriteProducts);
-            productsStorage.forEach(item => {
-                if (item.id === data.id) {
-                    const {isFilled} = item
-                    this.setState({isFilled});
-                }
-            })
-        }
+        if (!favoriteProducts) return
+        const productsStorage = JSON.parse(favoriteProducts);
+
+        productsStorage.forEach(item => {
+            if (item.id !== data.id) return
+            const {isFilled} = item
+            this.setState({isFilled});
+        })
     }
 
     setFilled() {
@@ -42,29 +41,29 @@ class ProductCard extends Component {
         const {image, price, title, rating: {rate}} = data
 
         return (
-                <li className={s.productCard}>
-                    <div className={s.productCardBgImg}>
-                        <div className={s.productCardImg}>
-                            <img src={image} alt="product"/>
-                        </div>
-
-                        <div className={s.action}>
-                            <ShoppingCartOutlined className={s.actionCart} onClick={() => setModalData(data)}/>
-
-                            {!isFilled && <HeartOutlined className={s.actionHeart} onClick={() => this.setFilled()}/>}
-
-                            {isFilled && <HeartFilled className={s.actionHeart} onClick={() => this.setFilled()}/>}
-                        </div>
+            <li className={s.productCard}>
+                <div className={s.productCardBgImg}>
+                    <div className={s.productCardImg}>
+                        <img src={image} alt="product"/>
                     </div>
 
-                    <div className={s.textContent}>
-                        <h1 className={s.productCardTitle}>{title}</h1>
-                        <p className={s.productCardPrice}>Price: ${(price - price / 10).toFixed(2)}
-                            <span className={s.oldPrice}> ${price} </span>
-                        </p>
-                        <p className={s.productCardRating}>Rating: {rate}</p>
+                    <div className={s.action}>
+                        <ShoppingCartOutlined className={s.actionCart} onClick={() => setModalData(data)}/>
+
+                        {!isFilled && <HeartOutlined className={s.actionHeart} onClick={() => this.setFilled()}/>}
+
+                        {isFilled && <HeartFilled className={s.actionHeart} onClick={() => this.setFilled()}/>}
                     </div>
-                </li>
+                </div>
+
+                <div className={s.textContent}>
+                    <h1 className={s.productCardTitle}>{title}</h1>
+                    <p className={s.productCardPrice}>Price: ${(price - price / 10).toFixed(2)}
+                        <span className={s.oldPrice}> ${price} </span>
+                    </p>
+                    <p className={s.productCardRating}>Rating: {rate}</p>
+                </div>
+            </li>
         )
     }
 }

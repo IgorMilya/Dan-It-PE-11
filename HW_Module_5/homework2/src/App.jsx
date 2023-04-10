@@ -45,11 +45,9 @@ class App extends Component {
     }
 
     addLocalProduct(item, storage, isFilled) {
-
         const storageArray = JSON.parse(localStorage.getItem(`${storage}`)) || [];
         isFilled ? storageArray.push({...item, isFilled}) : storageArray.push(item)
         localStorage.setItem(`${storage}`, JSON.stringify(storageArray));
-
     }
 
 

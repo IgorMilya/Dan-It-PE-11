@@ -14,9 +14,9 @@ class ProductList extends Component {
 
     async getProductsCategories() {
         const {res} = await request({url: '/categories'});
-        if (res) {
-            this.setState({categories: res})
-        }
+        if (!res) return
+        this.setState({categories: res})
+
     }
 
     componentDidMount() {
