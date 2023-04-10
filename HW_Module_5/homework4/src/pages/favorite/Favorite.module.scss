@@ -1,0 +1,11 @@
+.container {
+  width: 1320px;
+  margin: 0 auto;
+}
+
+.favoriteProduct {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 200px;
+}
