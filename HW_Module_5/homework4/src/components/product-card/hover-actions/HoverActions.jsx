@@ -1,54 +1,49 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {Link, useOutletContext} from "react-router-dom";
+import useMetaData from "../../../hooks/useMetaData";
+import {addData} from "../../../redux/reducers/cardData.slice/cardData.slice";
+import {openFirstModal} from "../../../redux/reducers/firstOpened.slice/firstOpened.slice";
+import {addFavoriteProduct, removeFavoriteProduct} from "../../../redux/reducers/favorite.slice/favorite.slice";
+import {Link} from "react-router-dom";
 import s from "./HoverActions.module.scss"
 import {CheckCircleFilled, HeartFilled, HeartOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import PropTypes from "prop-types";
 
 const HoverActions = ({data, cardHover}) => {
-  const [isFilled, serIsFilled] = useState(false)
+  const {cart, favorite, dispatch} = useMetaData()
+  const [isFilled, setIsFilled] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
 
-  const [{addProduct, removeAllProducts, setModalData, setFavorite, favorite, cart}] = useOutletContext()
-
-  const savedProducts = useCallback((storagePlace, setValue) => {
-    const products = localStorage.getItem(`${storagePlace}`);
-    if (!products) return
-    const storage = JSON.parse(products);
-
+  const savedProducts = useCallback((storage, setValue) => {
+    if (!storage) return
     storage.forEach(item => {
       const {id, isFilled, isChecked} = item
       if (id !== data.id) return
       setValue(isFilled || isChecked)
     })
-  }, [data.id])
+  },[data.id])
 
-  const addFavorite = () => {
-    addProduct({
-      item: data,
-      setStateProduct: setFavorite,
-      storage: 'favoriteProducts',
-      isFilled: !isFilled
-    })
-    serIsFilled(true)
+  const addFavorite = (item) => {
+    dispatch(addFavoriteProduct({...item, isFilled: !isFilled}))
+    setIsFilled(true)
   }
 
-  const removeFavorite = () => {
-    removeAllProducts({
-      data: favorite,
-      item: data,
-      setStateProduct: setFavorite,
-      storage: 'favoriteProducts'
-    })
-    serIsFilled(false)
+  const removeFavorite = (id) => {
+    dispatch(removeFavoriteProduct(id))
+    setIsFilled(false)
+  }
+
+  const setModalData = (data) => {
+    dispatch(addData(data))
+    dispatch(openFirstModal())
   }
 
   useEffect(() => {
-    savedProducts("cartProducts", setIsChecked)
-  }, [cart])
+    savedProducts(cart, setIsChecked)
+  }, [savedProducts, cart])
 
   useEffect(() => {
-    savedProducts("favoriteProducts", serIsFilled)
-  }, [favorite])
+    savedProducts(favorite, setIsFilled)
+  }, [savedProducts, favorite])
 
   return (
     <>
@@ -59,9 +54,9 @@ const HoverActions = ({data, cardHover}) => {
 
           {isChecked && <Link to={"/cart"}><CheckCircleFilled className={s.actionCart}/></Link>}
 
-          {!isFilled && <HeartOutlined className={s.actionHeart} onClick={() => addFavorite()}/>}
+          {!isFilled && <HeartOutlined className={s.actionHeart} onClick={() => addFavorite(data)}/>}
 
-          {isFilled && <HeartFilled className={s.actionHeart} onClick={() => removeFavorite()}/>}
+          {isFilled && <HeartFilled className={s.actionHeart} onClick={() => removeFavorite(data.id)}/>}
         </div>
       }
     </>

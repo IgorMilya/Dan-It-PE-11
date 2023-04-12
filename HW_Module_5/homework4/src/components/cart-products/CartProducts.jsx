@@ -1,39 +1,43 @@
 import React, {useState} from "react";
-import {useOutletContext} from "react-router-dom";
+import useMetaData from "../../hooks/useMetaData";
+import {addData} from "../../redux/reducers/cardData.slice/cardData.slice";
+import {openSecondModal} from "../../redux/reducers/secondOpened.slice/secondOpened.slice";
+import {addCartProduct, removeCartProduct} from "../../redux/reducers/cart.slice/cart.slice";
 import s from "./CartProducts.module.scss";
 import {CloseCircleFilled} from "@ant-design/icons";
 import PropTypes from "prop-types";
 
 const CartProducts = ({item}) => {
-  const [{setSecondModalData, addProduct, setCart, cartProducts}] = useOutletContext()
-  const initialCounter = cartProducts.filter(el => el.id === item.id)
+  const {cart, dispatch} = useMetaData()
+  const initialCounter = cart.filter(el => el.id === item.id)
   const [counter, setCounter] = useState(initialCounter.length)
 
   const {images, price, title} = item
   const discountPrice = (price - price / 10).toFixed(0)
+  const allPricesForItem = discountPrice * counter
   const disabled = counter === 1 && "disabled"
 
-  const removeProduct = () => {
-    const storageIndex = cartProducts.findIndex(el => el.id === item.id)
-
+  const removeProduct =() => {
+    const storageIndex = cart.findIndex(el => el.id === item.id)
     if (storageIndex === -1) return
-      cartProducts.splice(storageIndex, 1)
-      localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
-      setCart(cartProducts)
+    dispatch(removeCartProduct(storageIndex))
   }
+
+  const addMoreCartProducts = (item) => dispatch(addCartProduct(item))
 
   const handleClick = (type) => {
     if (type === '+') {
       setCounter(prev => prev + 1)
-      addProduct({
-        item: item,
-        setStateProduct: setCart,
-        storage: 'cartProducts'
-      })
+      addMoreCartProducts(item)
     } else {
       setCounter(prev => prev - 1)
       removeProduct()
     }
+  }
+
+  const setSecondModalData = (data) => {
+    dispatch(addData(data))
+    dispatch(openSecondModal(true))
   }
 
   return (
@@ -56,13 +60,12 @@ const CartProducts = ({item}) => {
         <span className={s.counter}>{counter}</span>
         <button className={s.counterAction} disabled={disabled} onClick={() => handleClick("-")}>-</button>
       </div>
-      <div className={s.cartProductItem}>${discountPrice * counter}</div>
+      <div className={s.cartProductItem}>${allPricesForItem}</div>
     </li>
   )
 }
 
 export default CartProducts
-
 
 CartProducts.prototype = {
   cart: PropTypes.array.isRequired,

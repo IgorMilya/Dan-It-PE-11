@@ -1,22 +1,17 @@
-import React, {useEffect, useState} from "react";
-import {request} from "../../../../tools/request";
-import { useOutletContext } from "react-router-dom";
-import ProductCard from "../../../../components/product-card";
+import React, {useEffect} from "react";
+import useMetaData from "../../hooks/useMetaData";
+import {useDispatch} from "react-redux";
+import {getCategoriesAsync} from "../../redux/actions";
+import ProductCard from "../product-card";
 import s from "./ProductList.module.scss"
 import PropTypes from "prop-types";
 
 const ProductList =  () => {
-  const [categories, setCategories] = useState([])
-  const [{products}] = useOutletContext()
-
-  const getProductsCategories = async () => {
-    const {res} = await request({url: '/categories'});
-    if (!res) return
-    setCategories(res.slice(0, 6))
-  }
+  const dispatch = useDispatch()
+  const {products, categories} = useMetaData()
 
   useEffect(() => {
-    getProductsCategories()
+    dispatch(getCategoriesAsync())
   }, [])
 
   const firstCapitalLetter = (category) => {
