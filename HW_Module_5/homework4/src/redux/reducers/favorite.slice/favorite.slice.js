@@ -13,7 +13,7 @@ const favoriteSlice = createSlice({
       state.dataFav.push(action.payload)
     },
     removeFavoriteProduct(state, action) {
-      state.dataFav = [...state.dataFav.filter(el => el.id !== action.payload)]
+      state.dataFav = [...state.dataFav.filter(el => el.id !== action.payload.id)]
     }
   }
 })

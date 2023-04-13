@@ -1,22 +1,21 @@
 import React from "react";
-import {useSelector} from "react-redux";
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import cn from "classnames";
 import s from "./Navbar.module.scss";
 import {Badge} from "antd";
 import {HeartOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import PropTypes from "prop-types";
+import useMetaData from "../../hooks/useMetaData";
 
 const Navbar = () => {
-  const cart = useSelector(state => state.cart.data)
-  const favorite = useSelector(state => state.favorite.dataFav)
+  const {cart, favorite} = useMetaData()
 
   const offset = cart.length > 5 && [15, 0];
 
   return (
     <div className={cn(s.navbar, s.container)}>
       <div className={s.navbarText}>
-        <a href="#" className={s.headerTitle}>Hekto</a>
+        <Link to={"/product"} className={s.headerTitle}>Hekto</Link>
         <NavLink to="/product"
                  className={({isActive}) => (isActive ? cn(s.headerProducts, s.activeLink) : s.headerProducts)}>
           Products

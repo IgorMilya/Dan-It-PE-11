@@ -18,7 +18,7 @@ const ModalWrapper = () => {
   }
 
   const removeAllProductsCart = (id) => {
-    dispatch(removeAllCartProduct(id))
+    dispatch(removeAllCartProduct({id}))
     secondClosedModal()
   }
 

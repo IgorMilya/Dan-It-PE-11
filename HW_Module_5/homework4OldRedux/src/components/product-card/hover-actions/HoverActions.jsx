@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import useMetaData from "../../../hooks/useMetaData";
-import {useDispatch} from "react-redux";
 import {addData, addFavoriteProduct, openFirstModal, removeFavoriteProduct,} from "../../../redux/actions";
 import {Link} from "react-router-dom";
 import s from "./HoverActions.module.scss"
@@ -8,19 +7,18 @@ import {CheckCircleFilled, HeartFilled, HeartOutlined, ShoppingCartOutlined} fro
 import PropTypes from "prop-types";
 
 const HoverActions = ({data, cardHover}) => {
-  const dispatch = useDispatch();
-  const {cart, favorite} = useMetaData()
+  const {cart, favorite, dispatch} = useMetaData()
   const [isFilled, setIsFilled] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
 
-  const savedProducts = (storage, setValue) => {
+  const savedProducts = useCallback((storage, setValue) => {
     if (!storage) return
     storage.forEach(item => {
       const {id, isFilled, isChecked} = item
       if (id !== data.id) return
       setValue(isFilled || isChecked)
     })
-  }
+  }, [data.id])
 
   const addFavorite = (item) => {
     dispatch(addFavoriteProduct({...item, isFilled: !isFilled}))
@@ -39,11 +37,11 @@ const HoverActions = ({data, cardHover}) => {
 
   useEffect(() => {
     savedProducts(cart,  setIsChecked)
-  }, [savedProducts])
+  }, [savedProducts, cart])
 
   useEffect(() => {
     savedProducts(favorite, setIsFilled)
-  }, [savedProducts])
+  }, [savedProducts, favorite])
 
   return (
     <>

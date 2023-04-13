@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
 import useMetaData from "../../../hooks/useMetaData";
-import {useDispatch} from "react-redux";
 import {getProductsAsync} from "../../../redux/actions";
 import {Outlet} from "react-router-dom";
 import Navbar from "../../../components/navbar";
@@ -11,12 +10,11 @@ import {Layout as AntdLayout} from "antd";
 const {Header: AntdHeader, Content: AntdContent} = AntdLayout;
 
 const ContentWrapper = () => {
-  const dispatch = useDispatch()
-  const {cart, isFirstOpened, isSecondOpened, favorite} = useMetaData()
+  const {cart, isFirstOpened, isSecondOpened, favorite, dispatch} = useMetaData()
 
   useEffect(() => {
     dispatch(getProductsAsync())
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     window.localStorage.setItem("cartProducts", JSON.stringify(cart))

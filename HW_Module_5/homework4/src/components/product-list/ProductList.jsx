@@ -3,6 +3,7 @@ import useMetaData from "../../hooks/useMetaData";
 import {asyncCategories} from "../../redux/reducers/categories.slice/asyncCategories";
 import ProductCard from "../product-card";
 import s from "./ProductList.module.scss"
+import {LoadingOutlined} from "@ant-design/icons";
 import PropTypes from "prop-types";
 
 const ProductList = () => {
@@ -37,7 +38,7 @@ const ProductList = () => {
         </section>
       }
 
-      {isLoading && <h1>Loading</h1>}
+      {isLoading && <div className={s.loader}><LoadingOutlined style={{fontSize: "50px"}} /></div>}
       {error && <h1>{error}</h1>}
     </>
   )

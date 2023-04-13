@@ -3,10 +3,6 @@
   margin: 0 auto;
 }
 
-.productList {
-
-}
-
 .productListTitle {
   font-size: 30px;
   font-family: "Roboto", sans-serif;
@@ -19,4 +15,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
 }

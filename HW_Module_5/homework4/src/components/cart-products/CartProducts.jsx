@@ -18,9 +18,9 @@ const CartProducts = ({item}) => {
   const disabled = counter === 1 && "disabled"
 
   const removeProduct =() => {
-    const storageIndex = cart.findIndex(el => el.id === item.id)
-    if (storageIndex === -1) return
-    dispatch(removeCartProduct(storageIndex))
+    const index = cart.findIndex(el => el.id === item.id)
+    if (index === -1) return
+    dispatch(removeCartProduct({index}))
   }
 
   const addMoreCartProducts = (item) => dispatch(addCartProduct(item))
@@ -36,7 +36,7 @@ const CartProducts = ({item}) => {
   }
 
   const setSecondModalData = (data) => {
-    dispatch(addData(data))
+    dispatch(addData({data}))
     dispatch(openSecondModal(true))
   }
 

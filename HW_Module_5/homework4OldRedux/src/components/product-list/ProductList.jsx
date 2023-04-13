@@ -1,18 +1,16 @@
 import React, {useEffect} from "react";
 import useMetaData from "../../hooks/useMetaData";
-import {useDispatch} from "react-redux";
 import {getCategoriesAsync} from "../../redux/actions";
 import ProductCard from "../product-card";
 import s from "./ProductList.module.scss"
 import PropTypes from "prop-types";
 
 const ProductList =  () => {
-  const dispatch = useDispatch()
-  const {products, categories} = useMetaData()
+  const {products, categories, dispatch} = useMetaData()
 
   useEffect(() => {
     dispatch(getCategoriesAsync())
-  }, [])
+  }, [dispatch])
 
   const firstCapitalLetter = (category) => {
     return category.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1))

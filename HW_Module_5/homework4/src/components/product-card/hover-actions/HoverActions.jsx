@@ -28,12 +28,12 @@ const HoverActions = ({data, cardHover}) => {
   }
 
   const removeFavorite = (id) => {
-    dispatch(removeFavoriteProduct(id))
+    dispatch(removeFavoriteProduct({id}))
     setIsFilled(false)
   }
 
   const setModalData = (data) => {
-    dispatch(addData(data))
+    dispatch(addData({data}))
     dispatch(openFirstModal())
   }
 

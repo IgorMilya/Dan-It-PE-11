@@ -1,13 +1,11 @@
 import React from "react";
 import useMetaData from "../../hooks/useMetaData";
-import {useDispatch} from "react-redux";
 import {addCartProduct, closeFirstModal, closeSecondModal, removeAllCartProduct} from "../../redux/actions";
 import Modal from "../../UI/modal";
 import Button from "../../UI/button";
 
 const ModalWrapper = () => {
-  const dispatch = useDispatch()
-  const {cardData, isFirstOpened, isSecondOpened} = useMetaData()
+  const {cardData, isFirstOpened, isSecondOpened, dispatch} = useMetaData()
 
   const firstClosedModal = () => dispatch(closeFirstModal());
   const secondClosedModal = () => dispatch(closeSecondModal());
