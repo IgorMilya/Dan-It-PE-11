@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
 import useMetaData from "../../../hooks/useMetaData";
-import {asyncProducts} from "../../../redux/reducers/product.slice/asyncProduct";
 import {Outlet} from "react-router-dom";
 import Navbar from "../../../components/navbar";
 import ModalWrapper from "../../../components/modalWeapper/ModalWrapper";
@@ -10,11 +9,7 @@ import {Layout as AntdLayout} from "antd";
 const {Header: AntdHeader, Content: AntdContent} = AntdLayout;
 
 const ContentWrapper = () => {
-  const {cart, isFirstOpened, isSecondOpened, favorite,dispatch} = useMetaData()
-
-  useEffect(() => {
-    dispatch(asyncProducts())
-  }, [dispatch])
+  const {cart, isFirstOpened, isSecondOpened, favorite} = useMetaData()
 
   useEffect(() => {
     window.localStorage.setItem("cartProducts", JSON.stringify(cart))
