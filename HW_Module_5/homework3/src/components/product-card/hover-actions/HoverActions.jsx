@@ -10,11 +10,8 @@ const HoverActions = ({data, cardHover}) => {
 
   const [{addProduct, removeAllProducts, setModalData, setFavorite, favorite, cart}] = useOutletContext()
 
-  const savedProducts = useCallback((storagePlace, setValue) => {
-    const products = localStorage.getItem(`${storagePlace}`);
-    if (!products) return
-    const storage = JSON.parse(products);
-
+  const savedProducts = useCallback((storage, setValue) => {
+    if (!storage) return
     storage.forEach(item => {
       const {id, isFilled, isChecked} = item
       if (id !== data.id) return
@@ -26,7 +23,6 @@ const HoverActions = ({data, cardHover}) => {
     addProduct({
       item: data,
       setStateProduct: setFavorite,
-      storage: 'favoriteProducts',
       isFilled: !isFilled
     })
     serIsFilled(true)
@@ -37,18 +33,17 @@ const HoverActions = ({data, cardHover}) => {
       data: favorite,
       item: data,
       setStateProduct: setFavorite,
-      storage: 'favoriteProducts'
     })
     serIsFilled(false)
   }
 
   useEffect(() => {
-    savedProducts("cartProducts", setIsChecked)
-  }, [cart])
+    savedProducts(cart, setIsChecked)
+  }, [savedProducts, cart])
 
   useEffect(() => {
-    savedProducts("favoriteProducts", serIsFilled)
-  }, [favorite])
+    savedProducts(favorite, serIsFilled)
+  }, [savedProducts, favorite])
 
   return (
     <>

@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import useMetaData from "../../../hooks/useMetaData";
 import {Outlet} from "react-router-dom";
 import Navbar from "../../../components/navbar";
-import ModalWrapper from "../../../components/modalWeapper/ModalWrapper";
+import ModalWrapper from "../../../components/modal-wrapper/ModalWrapper";
 import s from "./ContentWrapper.module.scss";
 import {Layout as AntdLayout} from "antd";
 

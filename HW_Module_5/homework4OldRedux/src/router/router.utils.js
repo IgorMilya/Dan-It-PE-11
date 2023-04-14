@@ -1,6 +1,6 @@
 import React from "react";
 import ProductList from "../components/product-list";
-import ContentWrapper from "../pages/homepage/contentWrapper";
+import ContentWrapper from "../pages/homepage/content-wrapper";
 import Favorite from "../pages/favorite";
 import Cart from "../pages/cart";
 

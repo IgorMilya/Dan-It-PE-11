@@ -5,21 +5,20 @@ import {CloseCircleFilled} from "@ant-design/icons";
 import PropTypes from "prop-types";
 
 const CartProducts = ({item}) => {
-  const [{setSecondModalData, addProduct, setCart, cartProducts}] = useOutletContext()
-  const initialCounter = cartProducts.filter(el => el.id === item.id)
+  const [{setSecondModalData, addProduct, setCart, cart}] = useOutletContext()
+  const initialCounter = cart.filter(el => el.id === item.id)
   const [counter, setCounter] = useState(initialCounter.length)
 
   const {images, price, title} = item
   const discountPrice = (price - price / 10).toFixed(0)
   const disabled = counter === 1 && "disabled"
 
-  const removeProduct = () => {
-    const storageIndex = cartProducts.findIndex(el => el.id === item.id)
 
-    if (storageIndex === -1) return
-      cartProducts.splice(storageIndex, 1)
-      localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
-      setCart(cartProducts)
+  const removeProduct = () => {
+    const index = cart.findIndex(el => el.id === item.id)
+    if (index === -1) return
+    cart.splice(index, 1)
+    setCart([...cart])
   }
 
   const handleClick = (type) => {
@@ -28,7 +27,6 @@ const CartProducts = ({item}) => {
       addProduct({
         item: item,
         setStateProduct: setCart,
-        storage: 'cartProducts'
       })
     } else {
       setCounter(prev => prev - 1)
@@ -66,9 +64,8 @@ export default CartProducts
 
 CartProducts.prototype = {
   cart: PropTypes.array.isRequired,
-  item: PropTypes.array.isRequired,
+  item: PropTypes.object.isRequired,
   setCart: PropTypes.func.isRequired,
   addProduct: PropTypes.func.isRequired,
-  cartProducts: PropTypes.array.isRequired,
   setSecondModalData: PropTypes.func.isRequired
 }

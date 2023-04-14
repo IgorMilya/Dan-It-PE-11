@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {request} from "../../../../tools/request";
+import {request} from "../../tools/request";
 import { useOutletContext } from "react-router-dom";
-import ProductCard from "../../../../components/product-card";
+import ProductCard from "../product-card";
 import s from "./ProductList.module.scss"
 import PropTypes from "prop-types";
 
