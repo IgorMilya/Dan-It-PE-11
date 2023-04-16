@@ -1,8 +1,6 @@
 import React from "react";
 import useMetaData from "../../hooks/useMetaData";
-import {closeFirstModal} from "../../redux/reducers/firstOpened.slice/firstOpened.slice";
-import {closeSecondModal} from "../../redux/reducers/secondOpened.slice/secondOpened.slice";
-import {addCartProduct, removeAllCartProduct} from "../../redux/reducers/cart.slice/cart.slice";
+import {closeFirstModal, closeSecondModal, addCartProduct, removeAllCartProduct} from "../../redux/reducers"
 import Modal from "../../UI/modal";
 import Button from "../../UI/button";
 

@@ -1,0 +1,7 @@
+export {addData} from "./cardData.slice/cardData.slice"
+export {openFirstModal, closeFirstModal} from "./firstOpened.slice/firstOpened.slice"
+export {addFavoriteProduct, removeFavoriteProduct} from "./favorite.slice/favorite.slice"
+export {openSecondModal, closeSecondModal} from "./secondOpened.slice/secondOpened.slice"
+export {addCartProduct, removeCartProduct, removeAllCartProduct} from "./cart.slice/cart.slice"
+export {useGetProductsQuery} from "./products.slice/products.slice"
+export {useGetCategoriesQuery} from "./categories.slice/categories.slice"

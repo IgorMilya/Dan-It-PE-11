@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useState} from "react";
 import useMetaData from "../../../hooks/useMetaData";
-import {addData} from "../../../redux/reducers/cardData.slice/cardData.slice";
-import {openFirstModal} from "../../../redux/reducers/firstOpened.slice/firstOpened.slice";
-import {addFavoriteProduct, removeFavoriteProduct} from "../../../redux/reducers/favorite.slice/favorite.slice";
+import {addData, openFirstModal, addFavoriteProduct, removeFavoriteProduct} from "../../../redux/reducers"
+
+
 import {Link} from "react-router-dom";
 import s from "./HoverActions.module.scss"
 import {CheckCircleFilled, HeartFilled, HeartOutlined, ShoppingCartOutlined} from "@ant-design/icons";

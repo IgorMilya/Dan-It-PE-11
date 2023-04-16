@@ -1,8 +1,6 @@
 import React, {useState} from "react";
 import useMetaData from "../../hooks/useMetaData";
-import {addData} from "../../redux/reducers/cardData.slice/cardData.slice";
-import {openSecondModal} from "../../redux/reducers/secondOpened.slice/secondOpened.slice";
-import {addCartProduct, removeCartProduct} from "../../redux/reducers/cart.slice/cart.slice";
+import {addData, openSecondModal, addCartProduct, removeCartProduct} from "../../redux/reducers"
 import s from "./CartProducts.module.scss";
 import {CloseCircleFilled} from "@ant-design/icons";
 import PropTypes from "prop-types";
