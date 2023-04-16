@@ -10,14 +10,11 @@ const Favorite = () => {
 
   return (
     <>
-      {!!favorite &&
-        <>
-          <ul className={cn(s.favoriteProduct, s.container)}>
-            {favorite.map((item) => <ProductCard data={item} key={item.id}/>)}
-          </ul>
-        </>
-      }
-      {favorite.length === 0 &&
+      {!!favorite && favorite.length !== 0 ?
+        <ul className={cn(s.favoriteProduct, s.container)}>
+          {favorite.map((item) => <ProductCard data={item} key={item.id}/>)}
+        </ul>
+        :
         <p>No Items</p>
       }
     </>
