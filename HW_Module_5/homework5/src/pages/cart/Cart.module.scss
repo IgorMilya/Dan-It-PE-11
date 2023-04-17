@@ -3,10 +3,6 @@
   margin: 0 auto;
 }
 
-.cartBox {
-  width: 66%;
-}
-
 .cartBackground {
   background: #F6F4FF;
   padding: 100px 0;
@@ -18,30 +14,11 @@
   font-weight: 700;
   color: #171A48;
 }
-
-.cartNav {
+.cart{
   display: flex;
   justify-content: space-between;
-  margin: 100px 0 30px;
+  margin-top: 100px;
 }
-
-.cartNavItem {
-  font-size: 18px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  color: #585D87;
-
-}
-
-.cartNavItem:nth-child(1) {
-  margin-right: 165px;
-}
-
-.cartListProduct {
-  margin-bottom: 100px;
-}
-
-
 
 
 

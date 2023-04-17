@@ -1,0 +1,44 @@
+.label {
+  margin-bottom: 24px;
+}
+
+.cartInput {
+  width: 100%;
+  background-color: transparent;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #a0a4a8;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2857142857px;
+}
+
+.cartInput:focus {
+  outline: none;
+}
+
+.cartInput::placeholder {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: gray;
+}
+
+.error {
+  border-bottom: 1px solid red;
+}
+
+.error::placeholder {
+  color: red
+}
+
+.errorText {
+  color: red
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}

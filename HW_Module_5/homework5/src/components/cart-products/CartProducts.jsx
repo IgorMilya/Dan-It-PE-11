@@ -1,22 +1,22 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import useMetaData from "../../hooks/useMetaData";
-import {addData} from "../../redux/reducers/cardData.slice/cardData.slice";
-import {openSecondModal} from "../../redux/reducers/secondOpened.slice/secondOpened.slice";
-import {addCartProduct, removeCartProduct} from "../../redux/reducers/cart.slice/cart.slice";
+import {minusNumber, plusNumber} from "../../redux/reducers";
+import {removeCartProduct, addCartProduct, addData, openSecondModal} from "../../redux/reducers";
 import s from "./CartProducts.module.scss";
 import {CloseCircleFilled} from "@ant-design/icons";
 
 const CartProducts = ({item}) => {
   const {cart, dispatch} = useMetaData()
-  const initialCounter = cart.filter(el => el.id === item.id)
+  const {images, price, title, id} = item
+  const initialCounter = cart.filter(el => el.id === id)
   const [counter, setCounter] = useState(initialCounter.length)
 
-  const {images, price, title} = item
-  const discountPrice = (price - price / 10).toFixed(0)
+  const discountPrice = Number((price - price / 10).toFixed(0))
   const allPricesForItem = discountPrice * counter
   const disabled = counter === 1 && "disabled"
 
-  const removeProduct =() => {
+
+  const removeProduct = () => {
     const index = cart.findIndex(el => el.id === item.id)
     if (index === -1) return
     dispatch(removeCartProduct({index}))
@@ -28,14 +28,16 @@ const CartProducts = ({item}) => {
     if (type === '+') {
       setCounter(prev => prev + 1)
       addMoreCartProducts(item)
+      dispatch(plusNumber(discountPrice))
     } else {
       setCounter(prev => prev - 1)
       removeProduct()
+      dispatch(minusNumber(discountPrice))
     }
   }
 
   const setSecondModalData = (data) => {
-    dispatch(addData({data}))
+    dispatch(addData({...data, totalPrice: allPricesForItem}))
     dispatch(openSecondModal(true))
   }
 

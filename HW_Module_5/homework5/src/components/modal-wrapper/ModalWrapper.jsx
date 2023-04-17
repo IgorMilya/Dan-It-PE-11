@@ -1,8 +1,11 @@
-import React from "react";
 import useMetaData from "../../hooks/useMetaData";
-import {closeFirstModal} from "../../redux/reducers/firstOpened.slice/firstOpened.slice";
-import {closeSecondModal} from "../../redux/reducers/secondOpened.slice/secondOpened.slice";
-import {addCartProduct, removeAllCartProduct} from "../../redux/reducers/cart.slice/cart.slice";
+import {
+  closeFirstModal,
+  closeSecondModal,
+  addCartProduct,
+  removeAllCartProduct,
+  minusNumber
+} from "../../redux/reducers";
 import Modal from "../../UI/modal";
 import Button from "../../UI/button";
 
@@ -17,8 +20,10 @@ const ModalWrapper = () => {
     firstClosedModal()
   }
 
-  const removeAllProductsCart = (id) => {
+  const removeAllProductsCart = (data) => {
+    const {id, totalPrice} = data
     dispatch(removeAllCartProduct({id}))
+    dispatch(minusNumber(totalPrice))
     secondClosedModal()
   }
 
@@ -41,7 +46,7 @@ const ModalWrapper = () => {
     <Button
       backgroundColor={"darkblue"}
       text={"Ok"}
-      onClick={() => removeAllProductsCart(cardData.id)}
+      onClick={() => removeAllProductsCart(cardData)}
       className={'modal-button'}
     />
     <Button

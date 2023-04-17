@@ -1,0 +1,65 @@
+.formWrapper {
+  background: #ececf5;
+  width: 25%;
+  height: 100%;
+  padding: 20px 25px;
+  border-radius: 5px;
+}
+
+.formTitle {
+  font-family: "Roboto", sans-serif;
+  color: #171A48;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.checkoutBox {
+
+}
+
+.checkout {
+  background: #F03085;
+  color: white;
+  padding: 10px 30px;
+}
+
+
+.cartInput {
+  width: 100%;
+  background-color: transparent;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #a0a4a8;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2857142857px;
+}
+
+.error {
+  border-bottom: 1px solid red;
+}
+
+.error::placeholder {
+  color: red
+}
+
+.errorText {
+  color: red
+
+}
+
+.label {
+  margin-bottom: 24px;
+}
+
+.address {
+  display: flex;
+  gap: 15px;
+}

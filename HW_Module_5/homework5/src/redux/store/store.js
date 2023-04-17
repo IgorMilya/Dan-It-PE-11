@@ -1,7 +1,7 @@
 import {configureStore} from "@reduxjs/toolkit"
-import {productsAPI} from "../../services/ProductsService"
+import {API} from "../../services/API"
 import cartReducer from "../reducers/cart.slice/cart.slice"
-import favoriteReducer from "../reducers/favorite.slice/favorite.slice"
+import totalSlice from "../reducers/total.slice/total.slice";
 import cardDataReducer from "../reducers/cardData.slice/cardData.slice"
 import firstOpenedReducer from "../reducers/firstOpened.slice/firstOpened.slice"
 import secondOpenedReducer from "../reducers/secondOpened.slice/secondOpened.slice"
@@ -9,14 +9,14 @@ import secondOpenedReducer from "../reducers/secondOpened.slice/secondOpened.sli
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
-    favorite: favoriteReducer,
     cardData: cardDataReducer,
     firstOpened: firstOpenedReducer,
     secondOpened: secondOpenedReducer,
-    [productsAPI.reducerPath]: productsAPI.reducer
+    total: totalSlice,
+    [API.reducerPath]: API.reducer
   },
 
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productsAPI.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(API.middleware),
 
 })
 

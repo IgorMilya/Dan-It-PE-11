@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import  {useEffect, useRef, useState} from "react";
 import HoverActions from "./hover-actions";
 import s from "./ProductCard.module.scss"
 import PropTypes from "prop-types";

@@ -1,4 +1,3 @@
-import React from "react";
 import s from "./Modal.module.scss"
 import cn from "classnames";
 

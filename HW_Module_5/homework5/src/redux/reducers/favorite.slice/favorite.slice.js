@@ -1,22 +1,29 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {API} from "../../../services/API"
 
-const initialState = {
-  dataFav: JSON.parse(localStorage.getItem('favoriteProducts')) || []
-}
-
-const favoriteSlice = createSlice({
-  name: 'dataFav',
-  initialState,
-  reducers: {
-    addFavoriteProduct(state, action) {
-      // state.dataFav = [...state.dataFav, action.payload]
-      state.dataFav.push(action.payload)
-    },
-    removeFavoriteProduct(state, action) {
-      state.dataFav = [...state.dataFav.filter(el => el.id !== action.payload.id)]
-    }
-  }
+export const favoriteAPI = API.injectEndpoints({
+  endpoints: (builder) => ({
+    getFavorites: builder.query({
+      query: () => ({
+        url: "/favorite",
+      }),
+      providesTags: ['Favorite']
+    }),
+    addFavorites: builder.mutation({
+      query: (body) => ({
+        url: "/favorite",
+        method: 'POST',
+        body
+      }),
+      invalidatesTags: ['Favorite']
+    }),
+    deleteFavorites: builder.mutation({
+      query: (id) => ({
+        url: `/favorite/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Favorite']
+    })
+  })
 })
 
-export const {addFavoriteProduct, removeFavoriteProduct} = favoriteSlice.actions
-export default favoriteSlice.reducer
+export const {useGetFavoritesQuery, useAddFavoritesMutation, useDeleteFavoritesMutation} = favoriteAPI

@@ -1,14 +1,16 @@
-import React, {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import useMetaData from "../../../hooks/useMetaData";
-import {addData} from "../../../redux/reducers/cardData.slice/cardData.slice";
-import {openFirstModal} from "../../../redux/reducers/firstOpened.slice/firstOpened.slice";
-import {addFavoriteProduct, removeFavoriteProduct} from "../../../redux/reducers/favorite.slice/favorite.slice";
+import {addData, openFirstModal, useAddFavoritesMutation, useGetFavoritesQuery, useDeleteFavoritesMutation} from "../../../redux/reducers";
 import {Link} from "react-router-dom";
 import s from "./HoverActions.module.scss"
-import {CheckCircleFilled, HeartFilled, HeartOutlined, ShoppingCartOutlined} from "@ant-design/icons";
+import * as Icon from "@ant-design/icons";
 
 const HoverActions = ({data, cardHover}) => {
-  const {cart, favorite, dispatch} = useMetaData()
+  const {cart, dispatch} = useMetaData()
+  const {data: favorite} = useGetFavoritesQuery()
+  const [addFavorites] = useAddFavoritesMutation()
+  const [deleteFavorites] = useDeleteFavoritesMutation()
+
   const [isFilled, setIsFilled] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
 
@@ -22,17 +24,17 @@ const HoverActions = ({data, cardHover}) => {
   },[data.id])
 
   const addFavorite = (item) => {
-    dispatch(addFavoriteProduct({...item, isFilled: !isFilled}))
+    addFavorites({...item, isFilled: !isFilled})
     setIsFilled(true)
   }
 
   const removeFavorite = (id) => {
-    dispatch(removeFavoriteProduct({id}))
+    deleteFavorites(id)
     setIsFilled(false)
   }
 
   const setModalData = (data) => {
-    dispatch(addData({data}))
+    dispatch(addData(data))
     dispatch(openFirstModal())
   }
 
@@ -49,13 +51,13 @@ const HoverActions = ({data, cardHover}) => {
       {!!cardHover &&
         <div className={s.action}>
 
-          {!isChecked && <ShoppingCartOutlined className={s.actionCart} onClick={() => setModalData(data)}/>}
+          {!isChecked && <Icon.ShoppingCartOutlined className={s.actionCart} onClick={() => setModalData(data)}/>}
 
-          {isChecked && <Link to={"/cart"}><CheckCircleFilled className={s.actionCart}/></Link>}
+          {isChecked && <Link to={"/cart"}><Icon.CheckCircleFilled className={s.actionCart}/></Link>}
 
-          {!isFilled && <HeartOutlined className={s.actionHeart} onClick={() => addFavorite(data)}/>}
+          {!isFilled && <Icon.HeartOutlined className={s.actionHeart} onClick={() => addFavorite(data)}/>}
 
-          {isFilled && <HeartFilled className={s.actionHeart} onClick={() => removeFavorite(data.id)}/>}
+          {isFilled && <Icon.HeartFilled className={s.actionHeart} onClick={() => removeFavorite(data.id)}/>}
         </div>
       }
     </>

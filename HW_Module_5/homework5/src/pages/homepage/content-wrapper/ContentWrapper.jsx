@@ -1,23 +1,18 @@
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import useMetaData from "../../../hooks/useMetaData";
 import {Outlet} from "react-router-dom";
 import Navbar from "../../../components/navbar";
 import ModalWrapper from "../../../components/modal-wrapper/ModalWrapper";
 import s from "./ContentWrapper.module.scss";
 import {Layout as AntdLayout} from "antd";
-
 const {Header: AntdHeader, Content: AntdContent} = AntdLayout;
 
 const ContentWrapper = () => {
-  const {cart, isFirstOpened, isSecondOpened, favorite} = useMetaData()
+  const {cart, isFirstOpened, isSecondOpened, dispatch} = useMetaData()
 
   useEffect(() => {
     window.localStorage.setItem("cartProducts", JSON.stringify(cart))
   }, [cart])
-
-  useEffect(() => {
-    window.localStorage.setItem("favoriteProducts", JSON.stringify(favorite))
-  }, [favorite])
 
   useEffect(() => {
     isFirstOpened ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto')

@@ -9,7 +9,7 @@ const cardDataSlice = createSlice({
   initialState,
   reducers: {
     addData(state, action) {
-      state.cardData = action.payload.data
+      state.cardData = action.payload
     }
   }
 })
