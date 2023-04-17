@@ -5,10 +5,8 @@ export const initialValues = {
   secondName: "",
   age: "",
   phoneNumber: "",
-  address: {
-    city: "",
-    country: ""
-  }
+  city: "",
+  country: ""
 };
 
 export const validationSchema = Yup.object().shape({

@@ -1,11 +1,14 @@
 import useMetaData from "../../hooks/useMetaData";
 import {emptyCart} from "../../redux/reducers";
 import MyTextInput from "../../UI/input";
-import {NumericFormat} from 'react-number-format';
 import {Form, Formik} from "formik";
 import {initialValues, validationSchema} from "./purchaseForm.utils";
+import {NumericFormat} from 'react-number-format';
+import PhoneInput from 'react-phone-input-2'
 import s from "./PurchaseForm.module.scss"
 import cn from "classnames";
+import 'react-phone-input-2/lib/bootstrap.css'
+
 
 const PurchaseForm = () => {
   const {cart, dispatch} = useMetaData()
@@ -66,6 +69,7 @@ const PurchaseForm = () => {
                   {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
                     <p className={s.errorText}>{formik.errors.phoneNumber}</p>
                   ) : null}
+
                 </label>
                 <div className={s.address}>
                   <MyTextInput
