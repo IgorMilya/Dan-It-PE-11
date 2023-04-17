@@ -5,10 +5,9 @@ import {Form, Formik} from "formik";
 import {initialValues, validationSchema} from "./purchaseForm.utils";
 import {NumericFormat} from 'react-number-format';
 import PhoneInput from 'react-phone-input-2'
-import s from "./PurchaseForm.module.scss"
 import cn from "classnames";
+import s from "./PurchaseForm.module.scss"
 import 'react-phone-input-2/lib/bootstrap.css'
-
 
 const PurchaseForm = () => {
   const {cart, dispatch} = useMetaData()
@@ -56,21 +55,40 @@ const PurchaseForm = () => {
                 </label>
 
                 <label className={s.label}>
-                  <NumericFormat
-                    type="text"
-                    prefix="+38 "
-                    thousandsGroupStyle={"lakh"}
-                    thousandSeparator=" "
-                    allowLeadingZeros
-                    className={cn(s.cartInput, formik.touched.phoneNumber && formik.errors.phoneNumber && s.error)}
-                    placeholder={"Phone:063-23-23-123"}
-                    {...formik.getFieldProps("phoneNumber")}
+
+                  {/*Библиотека кака в дз*/}
+                  {/*<NumericFormat*/}
+                  {/*  type="text"*/}
+                  {/*  prefix="+38 "*/}
+                  {/*  thousandsGroupStyle={"lakh"}*/}
+                  {/*  thousandSeparator=" "*/}
+                  {/*  allowLeadingZeros*/}
+                  {/*  className={cn(s.cartInput, formik.touched.phoneNumber && formik.errors.phoneNumber && s.error)}*/}
+                  {/*  placeholder={"Phone:063-23-23-123"}*/}
+                  {/*  {...formik.getFieldProps("phoneNumber")}*/}
+                  {/*/>*/}
+                  {/*{formik.touched.phoneNumber && formik.errors.phoneNumber ? (*/}
+                  {/*  <p className={s.errorText}>{formik.errors.phoneNumber}</p>*/}
+                  {/*) : null}*/}
+
+                  <PhoneInput
+                    inputClass={cn(s.phoneInput, formik.touched.phoneNumber && formik.errors.phoneNumber && s.error)}
+                    inputStyle={{borderBottom: "1px solid #a0a4a8"}}
+                    buttonClass={s.dropdown}
+                    country={'ua'}
+                    specialLabel={''}
+                    inputProps={{
+                      onChange: formik.handleChange,
+                      onBlur: formik.handleBlur,
+                      name: "phoneNumber"
+                    }}
+                    value={formik.values.phoneNumber}
                   />
                   {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
                     <p className={s.errorText}>{formik.errors.phoneNumber}</p>
                   ) : null}
-
                 </label>
+
                 <div className={s.address}>
                   <MyTextInput
                     type="text"

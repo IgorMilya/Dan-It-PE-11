@@ -25,11 +25,8 @@ export const validationSchema = Yup.object().shape({
     .max(150, "Too Elderly! You must be till 150 years old")
     .integer()
     .required("Required only numbers"),
-  phoneNumber: Yup.number()
-    .integer()
-    .positive()
-    .test("len", "Phone number must be 13 digits", (val) => val.toString().length >= 12 && val.toString().length <= 12)
-    .required("Required only numbers"),
+  phoneNumber: Yup.string()
+    .required("Required"),
   city: Yup.string()
     .min(2, "Too Short! 3-20 symbols")
     .max(20, "Too Long! 3-20 symbols")
