@@ -1,3 +1,2 @@
-import MyTextInput from "./MyTextInput";
-
-export default MyTextInput
+export {MyTextInput} from "./textInput/MyTextInput";
+export {MyPhoneInput} from "./phoneInput/MyPhoneInput"

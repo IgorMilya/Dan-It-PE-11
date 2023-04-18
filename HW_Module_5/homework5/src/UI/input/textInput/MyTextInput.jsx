@@ -2,7 +2,7 @@ import {useField} from "formik";
 import s from "./MyTextInput.module.scss"
 import cn from "classnames";
 
-const MyTextInput = ({...props}) => {
+export const MyTextInput = ({...props}) => {
   const [field, meta] = useField(props);
   return (
     <>
@@ -16,4 +16,3 @@ const MyTextInput = ({...props}) => {
   );
 }
 
-export default MyTextInput
