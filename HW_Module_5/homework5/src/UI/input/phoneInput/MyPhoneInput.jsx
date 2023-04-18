@@ -2,9 +2,11 @@ import PhoneInput from "react-phone-input-2";
 import cn from "classnames";
 import s from "./MyPhoneInput.module.scss";
 
-export const MyPhoneInput = ({errors, touched, handleChange, handleBlur, values}) => {
+export const MyPhoneInput = ({errors, touched, handleBlur, values, setFieldValue}) => {
   const numbErr = errors.phoneNumber
   const numbTou = touched.phoneNumber
+
+  const handleChange = (value) => setFieldValue('phoneNumber', value);
 
   return (
     <>
@@ -15,11 +17,9 @@ export const MyPhoneInput = ({errors, touched, handleChange, handleBlur, values}
         country={'ua'}
         specialLabel={''}
         enableSearch={true}
-        copyNumbersOnly={false}
-        enableAreaCodeStretch={true}
+        onChange={handleChange}
         inputProps={{
           name: "phoneNumber",
-          onChange: handleChange,
           onBlur: handleBlur
         }}
         value={values.phoneNumber}
