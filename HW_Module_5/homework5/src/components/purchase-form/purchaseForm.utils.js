@@ -30,7 +30,6 @@ export const validationSchema = Yup.object().shape({
   //   .integer()
   //   .required("Required"),
   phoneNumber: Yup.string()
-    .test("len", "Phone number must be 10-18 digits", (val) => val.replace(/\D/g, '').length > 10 && val.replace(/\D/g, '').length < 19)
     .required("Required"),
   city: Yup.string()
     .min(2, "Too Short! 3-20 symbols")

@@ -1,3 +1,4 @@
+import React , {useRef} from "react";
 import useMetaData from "../../hooks/useMetaData";
 import {emptyCart} from "../../redux/reducers";
 import MyTextInput from "../../UI/input";
@@ -11,12 +12,20 @@ import 'react-phone-input-2/lib/bootstrap.css'
 
 const PurchaseForm = () => {
   const {cart, dispatch} = useMetaData()
+  const errorRef = useRef(false)
+  console.log(1)
 
   const onSubmit = (user, {resetForm}) => {
     console.log({user, cart});
     dispatch(emptyCart())
     resetForm()
   };
+
+  const isValid = (value, country) => {
+    const formatLen = country.format.replace(/[()+ ]/g, '').length
+    const valueLen = value.replace(/\D/g, '').length
+    errorRef.current = valueLen !== formatLen && valueLen !== country.dialCode.length;
+  }
 
   const formikProps = {
     initialValues,
@@ -83,10 +92,12 @@ const PurchaseForm = () => {
                       name: "phoneNumber"
                     }}
                     value={formik.values.phoneNumber}
+                    isValid={isValid}
                   />
                   {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
                     <p className={s.errorText}>{formik.errors.phoneNumber}</p>
                   ) : null}
+                  {!!errorRef.current && <p className={s.errorText}>{"Invalid phone numbers. Enter full number"}</p>}
                 </label>
 
                 <div className={s.address}>
