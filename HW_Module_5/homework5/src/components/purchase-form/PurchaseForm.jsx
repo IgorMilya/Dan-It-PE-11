@@ -56,7 +56,7 @@ const PurchaseForm = () => {
 
                 <label className={s.label}>
 
-                  {/*Библиотека кака в дз*/}
+                  {/*Библиотека как в дз*/}
                   {/*<NumericFormat*/}
                   {/*  type="text"*/}
                   {/*  prefix="+38 "*/}
