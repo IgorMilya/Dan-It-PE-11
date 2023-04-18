@@ -5,8 +5,10 @@ export const initialValues = {
   secondName: "",
   age: "",
   phoneNumber: "",
-  city: "",
-  country: ""
+  address: {
+    city: "",
+    country: ""
+  }
 };
 
 export const validationSchema = Yup.object().shape({
@@ -29,17 +31,18 @@ export const validationSchema = Yup.object().shape({
   //   .test("len", "Phone number must be 10 digits", (val) => val.toString().length === 12)
   //   .integer()
   //   .required("Required"),
-  phoneNumber: Yup.string()
-    .required("Required"),
-  city: Yup.string()
-    .min(2, "Too Short! 3-20 symbols")
-    .max(20, "Too Long! 3-20 symbols")
-    .matches(/\p{Lu}/u, 'Address must contain at least one uppercase letter')
-    .required("Required"),
-  country: Yup.string()
-    .min(2, "Too Short! 3-20 symbols")
-    .max(20, "Too Long! 3-20 symbols")
-    .matches(/\p{Lu}/u, 'Address must contain at least one uppercase letter')
-    .required("Required"),
+  phoneNumber: Yup.string().required("Required"),
+  address: Yup.object().shape({
+    city: Yup.string()
+      .min(2, "Too Short! 3-20 symbols")
+      .max(20, "Too Long! 3-20 symbols")
+      .matches(/\p{Lu}/u, 'Address must contain at least one uppercase letter')
+      .required("Required"),
+    country: Yup.string()
+      .min(2, "Too Short! 3-20 symbols")
+      .max(20, "Too Long! 3-20 symbols")
+      .matches(/\p{Lu}/u, 'Address must contain at least one uppercase letter')
+      .required("Required"),
+  }),
 });
 

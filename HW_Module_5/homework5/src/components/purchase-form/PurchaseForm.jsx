@@ -64,7 +64,6 @@ const PurchaseForm = () => {
                 </label>
 
                 <label className={s.label}>
-
                   {/*Библиотека как в дз*/}
                   {/*<NumericFormat*/}
                   {/*  type="text"*/}
@@ -79,7 +78,6 @@ const PurchaseForm = () => {
                   {/*{formik.touched.phoneNumber && formik.errors.phoneNumber ? (*/}
                   {/*  <p className={s.errorText}>{formik.errors.phoneNumber}</p>*/}
                   {/*) : null}*/}
-
                   <PhoneInput
                     inputClass={cn(s.phoneInput, formik.touched.phoneNumber && formik.errors.phoneNumber && s.error)}
                     inputStyle={{borderBottom: "1px solid #a0a4a8"}}
@@ -104,12 +102,12 @@ const PurchaseForm = () => {
                   <MyTextInput
                     type="text"
                     placeholder={"Country"}
-                    {...formik.getFieldProps("country")}
+                    {...formik.getFieldProps("address.country")}
                   />
                   <MyTextInput
                     type="text"
                     placeholder={"City"}
-                    {...formik.getFieldProps("city")}
+                    {...formik.getFieldProps("address.city")}
                   />
                 </div>
                 <button type={'submit'} className={s.checkout}>Checkout</button>
