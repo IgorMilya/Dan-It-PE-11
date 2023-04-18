@@ -1,4 +1,4 @@
-import React , {useRef} from "react";
+import React, {useCallback, useRef} from "react";
 import useMetaData from "../../hooks/useMetaData";
 import {emptyCart} from "../../redux/reducers";
 import MyTextInput from "../../UI/input";
@@ -13,7 +13,6 @@ import 'react-phone-input-2/lib/bootstrap.css'
 const PurchaseForm = () => {
   const {cart, dispatch} = useMetaData()
   const errorRef = useRef(false)
-  console.log(1)
 
   const onSubmit = (user, {resetForm}) => {
     console.log({user, cart});
@@ -21,11 +20,11 @@ const PurchaseForm = () => {
     resetForm()
   };
 
-  const isValid = (value, country) => {
+  const isValid = useCallback((value, country) => {
     const formatLen = country.format.replace(/[()+ ]/g, '').length
     const valueLen = value.replace(/\D/g, '').length
     errorRef.current = valueLen !== formatLen && valueLen !== country.dialCode.length;
-  }
+  }, [errorRef.current])
 
   const formikProps = {
     initialValues,
@@ -78,6 +77,7 @@ const PurchaseForm = () => {
                   {/*{formik.touched.phoneNumber && formik.errors.phoneNumber ? (*/}
                   {/*  <p className={s.errorText}>{formik.errors.phoneNumber}</p>*/}
                   {/*) : null}*/}
+
                   <PhoneInput
                     inputClass={cn(s.phoneInput, formik.touched.phoneNumber && formik.errors.phoneNumber && s.error)}
                     inputStyle={{borderBottom: "1px solid #a0a4a8"}}
@@ -85,9 +85,9 @@ const PurchaseForm = () => {
                     country={'ua'}
                     specialLabel={''}
                     inputProps={{
+                      name: "phoneNumber",
                       onChange: formik.handleChange,
-                      onBlur: formik.handleBlur,
-                      name: "phoneNumber"
+                      onBlur: formik.handleBlur
                     }}
                     value={formik.values.phoneNumber}
                     isValid={isValid}
@@ -96,6 +96,7 @@ const PurchaseForm = () => {
                     <p className={s.errorText}>{formik.errors.phoneNumber}</p>
                   ) : null}
                   {!!errorRef.current && <p className={s.errorText}>{"Invalid phone numbers. Enter full number"}</p>}
+
                 </label>
 
                 <div className={s.address}>
