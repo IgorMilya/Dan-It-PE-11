@@ -14,11 +14,11 @@ const ProductList = () => {
     <>
       {!isLoading &&
         <section className={s.container}>
-          {!!categories && categories.map((category) =>
+          {categories?.map((category) =>
             <div key={category}>
               <h1 className={s.productListTitle}>{firstCapitalLetter(category)}</h1>
               <ul className={s.productCardBox}>
-                {!!products && products.map((data) =>
+                {products?.map((data) =>
                   category.includes(data.category) &&
                   <ProductCard
                     data={data}

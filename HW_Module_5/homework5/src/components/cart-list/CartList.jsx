@@ -13,9 +13,9 @@ const CartList = () => {
   const uniqArray = idArray.map((id) => cart.find((obj) => obj.id === id))
 
   useEffect(() => {
-    const amount = cart.reduce((total, el) => {
-      const discountPrice = Number((el.price - el.price / 10).toFixed(0))
-      return total + discountPrice;
+    const amount = cart.reduce((prev, curr) => {
+      const discountPrice = Number((curr.price - curr.price / 10).toFixed(0))
+      return prev + discountPrice;
     }, 0);
     dispatch(getTotal(amount))
   }, [])
@@ -29,7 +29,7 @@ const CartList = () => {
         <li className={s.cartNavItem}>Quantity</li>
         <li className={s.cartNavItem}>Total</li>
       </ul>
-      {cart.length === 0
+      {cart?.length === 0
         ?
         <p>No Items</p>
         :

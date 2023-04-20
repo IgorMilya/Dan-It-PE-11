@@ -5,10 +5,11 @@ import Navbar from "../../../components/navbar";
 import ModalWrapper from "../../../components/modal-wrapper/ModalWrapper";
 import s from "./ContentWrapper.module.scss";
 import {Layout as AntdLayout} from "antd";
+
 const {Header: AntdHeader, Content: AntdContent} = AntdLayout;
 
 const ContentWrapper = () => {
-  const {cart, isFirstOpened, isSecondOpened, dispatch} = useMetaData()
+  const {cart, isFirstOpened, isSecondOpened} = useMetaData()
 
   useEffect(() => {
     window.localStorage.setItem("cartProducts", JSON.stringify(cart))
@@ -34,7 +35,8 @@ const ContentWrapper = () => {
 
       <ModalWrapper/>
 
-    </AntdLayout>)
+    </AntdLayout>
+  )
 }
 
 export default ContentWrapper
