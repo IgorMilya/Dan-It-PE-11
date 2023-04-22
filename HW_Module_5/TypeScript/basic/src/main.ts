@@ -223,9 +223,133 @@ type Developers = Person1 & MyAccount;
 
 const devArray: Developers[] = [];
 
-const data: Developers = {name:"dsa", active:false, age:213, email:"", login:" "}
+const data: Developers = {name: "dsa", active: false, age: 213, email: "", login: " "}
 
 devArray.push(data)
+
+type F1 = (num: number) => string
+const f1: F1 = (num) => {
+  return String(num)
+}
+f1(1)
+
+
+const f2 = (num: number): string => {
+  return String(num)
+}
+
+const f3 = (cb: () => string): string => {
+  return String(num)
+}
+
+const createPoint = (x = 0, y = 0): [number, number] => {
+  return [x, y]
+}
+createPoint(10)
+
+
+const f4 = (...nums: number[]): string => {
+  return nums.join("-")
+}
+
+interface IPrintable {
+  label: string
+}
+
+const printReport = (obj: IPrintable): void => {
+  console.log(obj.label)
+}
+
+const drink = {
+  label: 'pepsi',
+  price: 90
+}
+
+const phone = {
+  label: "IPhone",
+  price: 1000
+}
+
+printReport(drink)
+printReport(phone)
+printReport({label: "dfas"})
+
+interface ICard {
+  suit: string,
+  numb: number
+}
+
+const pickCard = (x: number | ICard[]): number | ICard => {return Number(x)}
+pickCard([{suit: "", numb: 12}])
+
+//generic
+
+type TypeFactory<X> = X
+type MyType = TypeFactory<string>
+
+interface IValueContainer<Value> {
+  value: Value
+}
+type StringContainer = IValueContainer<string>
+
+const xy: StringContainer ={
+  value: ""
+}
+
+const printAnything = <T>(arr: T[]): void => {
+  console.log(arr)
+}
+printAnything<number>([12])
+
+interface Lengthwise {
+  length: number
+}
+
+const printLen = <T extends Lengthwise> (arg: T): number => {
+  return arg.length
+}
+printLen([""])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
