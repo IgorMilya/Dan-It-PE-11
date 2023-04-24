@@ -1,0 +1,32 @@
+.cartBox {
+  width: 66%;
+}
+
+.cartNav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom:30px;
+}
+
+.cartNavItem {
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  color: #585D87;
+
+}
+
+.cartNavItem:nth-child(1) {
+  margin-right: 165px;
+}
+
+.cartListProduct {
+  margin-bottom: 100px;
+}
+.total{
+  font-family: "Roboto", sans-serif;
+  color: #171A48;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 20px;
+}

@@ -105,7 +105,7 @@ const setter = <T>(data: T): T => data
 
 setter<number>(12)
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 interface IUser4 {
   name: string;
 }
@@ -161,7 +161,7 @@ interface ITod1 {
 }
 
 type TodoPrev = Omit<ITod1, "description">
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const todo1: TodoPrev = {
   title: "Clean room",
   completed: false
@@ -279,10 +279,12 @@ interface ICard {
   numb: number
 }
 
-const pickCard = (x: number | ICard[]): number | ICard => {return Number(x)}
+const pickCard = (x: number | ICard[]): number | ICard => {
+  return Number(x)
+}
 pickCard([{suit: "", numb: 12}])
 
-//generic
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////generic
 
 type TypeFactory<X> = X
 type MyType = TypeFactory<string>
@@ -290,9 +292,10 @@ type MyType = TypeFactory<string>
 interface IValueContainer<Value> {
   value: Value
 }
+
 type StringContainer = IValueContainer<string>
 
-const xy: StringContainer ={
+const xy: StringContainer = {
   value: ""
 }
 
@@ -305,45 +308,252 @@ interface Lengthwise {
   length: number
 }
 
-const printLen = <T extends Lengthwise> (arg: T): number => {
+const printLen = <T extends Lengthwise>(arg: T): number => {
   return arg.length
 }
 printLen([""])
 
 
+interface ISumB {
+  (a: number, b: string): string
+}
+
+type SumB = (a: number, b: string) => string
+
+const sumb: ISumB = (a, b) => {
+  return b
+}
+
+type UniqueId = string
+
+interface IUser {
+  name: UniqueId
+}
 
 
+type State = [number, (n: number) => void]
+const s: State = [123, n => {
+}]
+
+interface IUserM {
+  name: string,
+  age?: number
+}
+
+type Nullable<T> = T | null | undefined
+const userM: Nullable<IUserM> = null
+
+/////////////////////////////////
+interface IUserData {
+  name: string,
+  age: number
+}
+
+const user0: IUserData = <IUserData>{}
+
+// const element = <HTMLInputElement>document.querySelector("#root")
+// const {value} = element
+
+type ErrorMessage = string | string[] | Error
+const apiError: ErrorMessage = JSON.parse(JSON.stringify(["a", "s"]))
+const formattedMessage = (<string[]>apiError).map(e => e.toUpperCase())
 
 
+const test = {
+  name: "User",
+  age: 20
+} as const
 
+type U = typeof test
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////Generic
 
+const identity = <T>(arg: T): T => {
+  return arg
+}
 
+identity("")
+identity(1)
 
+//1
+interface IUserI {
+  name: string,
+  age: number
+}
 
+interface IMessage {
+  id: number,
+  text: string
+}
 
+// interface UserState {
+//   loading: boolean,
+//   error: Error | null,
+//   data: IUserI
+// }
 
+// interface MessageState {
+//   loading: boolean,
+//   error: Error | null,
+//   data: IMessage
+// }
 
+interface IState<T> {
+  loading: boolean,
+  error: Error | null,
+  data: T
+}
 
+type UserState = IState<IUserI>
+type MessageState = IState<IMessage>
 
+const messageState: MessageState = {
+  loading: false,
+  error: null,
+  data: {id: 1, text: ""}
+}
 
+const userState: UserState = {
+  loading: false,
+  error: null,
+  data: {age: 12, name: ""}
+}
+//2
+const getRandomElement = <T>(items: T[]): T => {
+  const randomIndex = Math.floor(Math.random() * items.length)
 
+  return items[randomIndex]
+}
 
+const el1 = getRandomElement([1, 2, 9, 6])
+const el2 = getRandomElement(["1", "2", "4"])
+//3
 
+const merge = <U, S>(ob1: U, ob2: S): U & S => {
+  return {...ob1, ...ob2}
+}
 
+const r1 = merge({b: 2}, {a: 1})
+const r2 = merge({b: 2, c: ""}, {a: 1})
+//4
 
+const fakeRequest = async () => {
+  return 2
+}
 
+const b: Promise<number> = fakeRequest()
 
+type Obj = Record<string, { title: string }>
 
+const i: Obj = {
+  lol: {title: ""}
+}
+//5
 
+const getValue = <T extends object, U extends keyof T>(obj: T, props: U) => {
+  return obj[props]
+}
+const p1 = getValue({name: ""}, "name")
+//6
 
+const getKey = <T extends object, U extends keyof T>(obj: T, value: T[U]): U | null => {
+  const key = (Object.keys(obj) as U[]).find(k => obj[k] === value)
 
+  return key || null
+}
+const key = getKey({name: "Ihor"}, "Ihor")
+//7
 
+// React.FC
+type FunctionalComponent<T extends object = object> = (props: T & { children: any }) => any;
 
+const component: FunctionalComponent<{ name: string, age: number }> = ({age, name, children}) => {
+}
+// const component: FunctionalComponent = ({children}) => {}
 
+//1
+interface IUser123 {
+  name: string,
+  age: number
+}
 
+type UserKeys = keyof IUser123
+// type UserKeys = "name" | "age"
+let props: UserKeys
+props = "age"
+//2
 
+const message2 = {
+  id: 1,
+  text: "JavaScript"
+}
 
+type MessageType = typeof message2
+type MessageKeys = keyof MessageType
+
+const userMessage: MessageType = {
+  id: 123,
+  text: "da"
+}
+//3
+
+const formData = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30
+}
+
+// interface IValidationResult {
+//   firstName: boolean;
+//   lastName: boolean;
+//   age: boolean;
+// }
+
+// type IValidationResult = {
+//   [key in keyof typeof formData]: boolean
+// }
+
+declare function validateD<T>(data: T): { [key in keyof T]: boolean }
+
+const rq = validateD(formData)
+///////////////////////////////
+//1
+// T === string . In TypeScript should be like that:
+type Test<T> = T extends string ? true : false
+type R = Test<"">
+
+//2
+
+interface IUser21 {
+  id: string;
+}
+
+interface IMessage21 {
+  id: number;
+}
+
+type ConditionId<T> = T extends { id: string } ? string : number
+
+const getId21 = <T extends { id: any }>(obj: T): ConditionId<T> => {
+  return obj.id
+}
+
+const r21 = getId21({} as IUser21)
+const r22 = getId21({} as IMessage21)
+//3
+
+type NotFalsy<T = null> = T extends (null | undefined | false | 0) ? never : T
+let k: NotFalsy
+//4
+
+type Filter<T, U> = T extends U ? never : T
+type RT = Filter<"a" | "b" | "c", "b">
+type RE = Exclude<"a" | "b" | "c", "b">
+//5
+
+type TryInfer<T extends object> = T extends infer RS ? RS : never;
+type RS = TryInfer<{ a: 1, b: 2 }>
+//6
 
 
 
