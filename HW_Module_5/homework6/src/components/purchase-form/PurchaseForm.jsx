@@ -1,5 +1,3 @@
-import useMetaData from "../../hooks/useMetaData";
-import {emptyCart} from "../../redux/reducers";
 import {MyTextInput, MyPhoneInput} from "../../UI/input";
 import {Form, Formik} from "formik";
 import {initialValues, validationSchema} from "./purchaseForm.utils";
@@ -7,13 +5,15 @@ import {NumericFormat} from 'react-number-format';
 import cn from "classnames";
 import s from "./PurchaseForm.module.scss"
 import 'react-phone-input-2/lib/bootstrap.css'
+import {useContext} from "react";
+import {ContextStore} from "../../context";
 
 const PurchaseForm = () => {
-  const {cart, dispatch} = useMetaData()
+  const {cart, emptyCart} = useContext(ContextStore)
 
   const onSubmit = (user, {resetForm}) => {
     console.log({user, cart});
-    dispatch(emptyCart())
+    emptyCart()
     resetForm()
   };
   const formikProps = {
@@ -53,21 +53,6 @@ const PurchaseForm = () => {
                 </label>
 
                 <label className={s.label}>
-                  {/*Библиотека как в дз*/}
-                  {/*<NumericFormat*/}
-                  {/*  type="text"*/}
-                  {/*  prefix="+38 "*/}
-                  {/*  thousandsGroupStyle={"lakh"}*/}
-                  {/*  thousandSeparator=" "*/}
-                  {/*  allowLeadingZeros*/}
-                  {/*  className={cn(s.cartInput, formik.touched.phoneNumber && formik.errors.phoneNumber && s.error)}*/}
-                  {/*  placeholder={"Phone:063-23-23-123"}*/}
-                  {/*  {...formik.getFieldProps("phoneNumber")}*/}
-                  {/*/>*/}
-                  {/*{formik.touched.phoneNumber && formik.errors.phoneNumber ? (*/}
-                  {/*  <p className={s.errorText}>{formik.errors.phoneNumber}</p>*/}
-                  {/*) : null}*/}
-
                   <MyPhoneInput {...formik}/>
                 </label>
 

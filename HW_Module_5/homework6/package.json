@@ -1,5 +1,5 @@
 {
-  "name": "homework4",
+  "name": "homework6",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "concurrently": "^8.0.1",
+    "jest": "^27.5.1",
     "prop-types": "^15.8.1"
   }
 }

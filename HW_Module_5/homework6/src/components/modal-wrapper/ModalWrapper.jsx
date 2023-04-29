@@ -1,30 +1,24 @@
-import useMetaData from "../../hooks/useMetaData";
-import {
-  closeFirstModal,
-  closeSecondModal,
-  addCartProduct,
-  removeAllCartProduct,
-  minusNumber
-} from "../../redux/reducers";
 import Modal from "../../UI/modal";
 import Button from "../../UI/button";
+import {useContext} from "react";
+import {ContextStore} from "../../context";
 
 const ModalWrapper = () => {
-  const {cardData, isFirstOpened, isSecondOpened, dispatch} = useMetaData()
-
-  const firstClosedModal = () => dispatch(closeFirstModal());
-  const secondClosedModal = () => dispatch(closeSecondModal());
+  const {
+    cardData, isFirstOpened, isSecondOpened, closeFirstModal, closeSecondModal, addCartProduct, minusNumber,
+    removeAllCartProduct
+  } = useContext(ContextStore)
 
   const addProductCart = (item) => {
-    dispatch(addCartProduct({...item, isChecked: true}))
-    firstClosedModal()
+    addCartProduct({...item, isChecked: true})
+    closeFirstModal()
   }
 
   const removeAllProductsCart = (data) => {
     const {id, totalPrice} = data
-    dispatch(removeAllCartProduct({id}))
-    dispatch(minusNumber(totalPrice))
-    secondClosedModal()
+    removeAllCartProduct(id)
+    minusNumber(totalPrice)
+    closeSecondModal()
   }
 
   const actionsAddToCart = (<>
@@ -37,7 +31,7 @@ const ModalWrapper = () => {
     <Button
       backgroundColor={"darkred"}
       text={"Cancel"}
-      onClick={() => firstClosedModal()}
+      onClick={() => closeFirstModal()}
       className={'modal-button'}
     />
   </>)
@@ -52,7 +46,7 @@ const ModalWrapper = () => {
     <Button
       backgroundColor={"darkblue"}
       text={"Cancel"}
-      onClick={() => secondClosedModal()}
+      onClick={() => closeSecondModal()}
       className={'modal-button'}
     />
   </>)
@@ -65,7 +59,7 @@ const ModalWrapper = () => {
         backgroundHeader={'firstHeader'}
         header={'Do u wanna add this product?'}
         subText={'Are you sure you wanna add it?'}
-        closeButton={() => firstClosedModal()}
+        closeButton={() => closeFirstModal()}
         actions={actionsAddToCart}
       />
 
@@ -75,7 +69,7 @@ const ModalWrapper = () => {
         backgroundHeader={'secondHeader'}
         header={'Do u wanna delete this product?'}
         subText={'Are you sure you wanna delete it?'}
-        closeButton={() => secondClosedModal()}
+        closeButton={() => closeSecondModal()}
         actions={actionsRemoveFromCart}
       />
     </>

@@ -1,18 +1,14 @@
-import {useCallback, useEffect, useState} from "react";
-import useMetaData from "../../../hooks/useMetaData";
-import {addData, openFirstModal, useAddFavoritesMutation, useGetFavoritesQuery, useDeleteFavoritesMutation} from "../../../redux/reducers";
+import {useCallback, useContext, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import s from "./HoverActions.module.scss"
 import * as Icon from "@ant-design/icons";
+import {ContextStore} from "../../../context";
 
 const HoverActions = ({data, cardHover}) => {
-  const {cart, dispatch} = useMetaData()
-  const {data: favorite} = useGetFavoritesQuery()
-  const [addFavorites] = useAddFavoritesMutation()
-  const [deleteFavorites] = useDeleteFavoritesMutation()
-
+  const {cart, favorite, postFavorite, deleteFavorite, addData, openFirstModal} = useContext(ContextStore)
   const [isFilled, setIsFilled] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
+
 
   const savedProducts = useCallback((storage, setValue) => {
     if (!storage) return
@@ -23,19 +19,19 @@ const HoverActions = ({data, cardHover}) => {
     })
   },[data.id])
 
-  const addFavorite = (item) => {
-    addFavorites({...item, isFilled: !isFilled})
+  const addFavorite =  (item) => {
+    postFavorite({...item, isFilled: !isFilled})
     setIsFilled(true)
   }
 
   const removeFavorite = (id) => {
-    deleteFavorites(id)
+    deleteFavorite(id)
     setIsFilled(false)
   }
 
   const setModalData = (data) => {
-    dispatch(addData(data))
-    dispatch(openFirstModal())
+    addData(data)
+    openFirstModal()
   }
 
   useEffect(() => {

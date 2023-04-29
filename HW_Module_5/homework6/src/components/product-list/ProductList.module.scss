@@ -3,22 +3,55 @@
   margin: 0 auto;
 }
 
+.settingView {
+  display: flex;
+  justify-content: end;
+}
+
+.productList {
+  margin-top: 90px;
+}
+
 .productListTitle {
   font-size: 30px;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   color: #151875;
   text-align: center;
-  margin: 90px;
+  margin-bottom: 90px;
 }
-.productCardBox{
+
+.productCardBox {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.loader{
+
+.loader {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 100px;
+}
+
+.tableButton {
+  border-radius: 5px 0 0 5px;
+  border: 1px solid gray;
+  margin: 0;
+  padding: 8px;
+  color: black;
+}
+
+.listButton {
+  border-radius: 0 5px 5px 0;
+  border: 1px solid gray;
+  margin: 0;
+  padding: 8px;
+  color: black;
+
+}
+
+.active {
+  color: white;
+  background: #000;
 }

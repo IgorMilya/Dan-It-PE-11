@@ -1,44 +1,40 @@
 import ProductCard from "../product-card";
-import {useGetCategoriesQuery, useGetProductsQuery} from "../../redux/reducers";
 import s from "./ProductList.module.scss"
-import {LoadingOutlined} from "@ant-design/icons";
-import PropTypes from "prop-types";
+import {useContext, useEffect} from "react";
+import {ContextStore} from "../../context";
+import {AppstoreOutlined, BarsOutlined} from "@ant-design/icons";
+import cn from "classnames";
 
 
 const ProductList = () => {
-  const {data: products, isLoading, error} = useGetProductsQuery(null)
-  const {data: categories} = useGetCategoriesQuery(null)
+  const {products, categories, getCategories, table, setTable} = useContext(ContextStore)
+  useEffect(() => {
+    getCategories()
+  }, [])
   const firstCapitalLetter = (category) => category.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1))
 
   return (
-    <>
-      {!isLoading &&
-        <section className={s.container}>
-          {categories?.map((category) =>
-            <div key={category}>
-              <h1 className={s.productListTitle}>{firstCapitalLetter(category)}</h1>
-              <ul className={s.productCardBox}>
-                {products?.map((data) =>
-                  category.includes(data.category) &&
-                  <ProductCard
-                    data={data}
-                    key={data.id}
-                  />
-                )}
-              </ul>
-            </div>
-          )}
-        </section>
-      }
-
-      {isLoading && <div className={s.loader}><LoadingOutlined style={{fontSize: "50px"}}/></div>}
-      {error && <h1>{error}</h1>}
-    </>
+    <section className={cn(s.productList, s.container)}>
+      <div className={s.settingView}>
+        <button className={table ? cn(s.tableButton, s.active) : s.tableButton} onClick={() => setTable(true)}><AppstoreOutlined style={{fontSize: "24px"}}/></button>
+        <button className={!table ? cn(s.listButton, s.active) : s.listButton} onClick={() => setTable(false)}><BarsOutlined style={{fontSize: "24px"}}/></button>
+      </div>
+      {!!categories && categories?.map((category) =>
+        <div key={category}>
+          <h1 className={s.productListTitle}>{firstCapitalLetter(category)}</h1>
+          <ul className={s.productCardBox}>
+            {products?.map((data) =>
+              category.includes(data.category) &&
+              <ProductCard
+                data={data}
+                key={data.id}
+              />
+            )}
+          </ul>
+        </div>
+      )}
+    </section>
   )
 }
 
 export default ProductList
-
-ProductList.prototype = {
-  products: PropTypes.array.isRequired
-}

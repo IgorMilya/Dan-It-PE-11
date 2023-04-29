@@ -1,44 +1,41 @@
-import {useState} from "react";
-import useMetaData from "../../hooks/useMetaData";
-import {minusNumber, plusNumber} from "../../redux/reducers";
-import {removeCartProduct, addCartProduct, addData, openSecondModal} from "../../redux/reducers";
+import {useContext, useState} from "react";
 import s from "./CartProducts.module.scss";
 import {CloseCircleFilled} from "@ant-design/icons";
+import {ContextStore} from "../../context";
 
 const CartProducts = ({item}) => {
-  const {cart, dispatch} = useMetaData()
-  const {images, price, title, id} = item
+  const {cart, removeCartProduct, addCartProduct, plusNumber, minusNumber, addData, openSecondModal} = useContext(ContextStore)
+  const {images, price, title, id, discountPercentage} = item
+
   const initialCounter = cart.filter(el => el.id === id)
   const [counter, setCounter] = useState(initialCounter.length)
 
-  const discountPrice = Number((price - price / 10).toFixed(0))
+  const discountPrice = Number((price - price / discountPercentage).toFixed(0))
   const allPricesForItem = discountPrice * counter
   const disabled = counter === 1 && "disabled"
 
 
   const removeProduct = () => {
-    const index = cart.findIndex(el => el.id === item.id)
+    const index = cart.findIndex(el => el.id === id)
     if (index === -1) return
-    dispatch(removeCartProduct({index}))
+    removeCartProduct(index)
   }
-
-  const addMoreCartProducts = (item) => dispatch(addCartProduct(item))
 
   const handleClick = (type) => {
     if (type === '+') {
       setCounter(prev => prev + 1)
-      addMoreCartProducts(item)
-      dispatch(plusNumber(discountPrice))
+      addCartProduct(item)
+     plusNumber(discountPrice)
     } else {
       setCounter(prev => prev - 1)
       removeProduct()
-      dispatch(minusNumber(discountPrice))
+      minusNumber(discountPrice)
     }
   }
 
   const setSecondModalData = (data) => {
-    dispatch(addData({...data, totalPrice: allPricesForItem}))
-    dispatch(openSecondModal(true))
+    addData({...data, totalPrice: allPricesForItem})
+    openSecondModal(true)
   }
 
   return (

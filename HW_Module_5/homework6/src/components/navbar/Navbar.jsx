@@ -1,16 +1,18 @@
-import useMetaData from "../../hooks/useMetaData";
 import {Link, NavLink} from "react-router-dom";
 import cn from "classnames";
 import s from "./Navbar.module.scss";
 import {Badge} from "antd";
 import * as Icon from "@ant-design/icons";
-import PropTypes from "prop-types";
-import {useGetFavoritesQuery} from "../../redux/reducers";
+import {useContext, useEffect} from "react";
+import {ContextStore} from "../../context";
 
 const Navbar = () => {
-  const {cart} = useMetaData()
-  const {data: favorite} = useGetFavoritesQuery()
+  const {cart, favorite, getFavorite} = useContext(ContextStore)
   const offset = cart.length > 5 && [15, 0];
+
+  useEffect(() => {
+    getFavorite()
+  }, [])
 
   return (
     <div className={cn(s.navbar, s.container)}>
@@ -42,8 +44,3 @@ const Navbar = () => {
   )
 }
 export default Navbar
-
-Navbar.prototype = {
-  cartProducts: PropTypes.array.isRequired,
-  favoriteProducts: PropTypes.array.isRequired
-}

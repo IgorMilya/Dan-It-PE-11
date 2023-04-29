@@ -39,6 +39,13 @@
   background: #F6F7FB;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  position: relative;
+}
+
+.listImg{
+  width: 30%;
+  height: 250px;
+  cursor: pointer;
 }
 
 .productCardImg {
@@ -51,6 +58,12 @@
   height: 100%;
   mix-blend-mode: multiply;
   object-fit: contain;
+}
+.rate{
+  font-size: 18px;
+  position: absolute;
+  top: 10px;
+  right: 15px;
 }
 
 .textContent {
@@ -66,19 +79,41 @@
   border-bottom-right-radius: 10px;
   color: #151875;
 }
+.listContent{
+  background: white;
+  width: 100%;
+  height: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: #151875;
+  padding-left: 25px;
+  padding-top: 20px;
+}
 
 .productCardTitle {
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   color: #FC2D85;
-
+}
+.listProductText{
+  font-size: 22px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  color: #FC2D85;
+  margin-bottom: 20px;
 }
 
 .productCardPrice {
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
+}
+.listProductPrice{
+  font-size: 22px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .oldPrice {
@@ -88,6 +123,7 @@
   color: #FC2D85;
   position: relative;
 }
+
 .oldPrice:before {
   content: "";
   position: absolute;
@@ -96,10 +132,31 @@
   background: #FC2D85;
   top: 50%;
 }
+.listDescription{
+  font-size: 17px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
 
 .productCardRating {
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
+}
 
+.listProductRating{
+  font-size: 17px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+}
+
+.productCardList {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.21);
+  border-radius: 10px;
+  position: relative;
 }
