@@ -15,7 +15,7 @@ const MiddleWare = (req, res, next) => {
 
 app.use(MiddleWare)
 app.use(express.json())
-app.use(cors({origin: `http://localhost:${PORT}`,}))
+app.use(cors())
 app.use("/products", productRouter)
 
 // app.get("/:id", (req, res) => {

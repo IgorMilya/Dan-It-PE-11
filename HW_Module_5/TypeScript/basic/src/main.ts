@@ -427,6 +427,7 @@ const getRandomElement = <T>(items: T[]): T => {
 
 const el1 = getRandomElement([1, 2, 9, 6])
 const el2 = getRandomElement(["1", "2", "4"])
+const el3 = getRandomElement(["1", "2", 4])
 //3
 
 const merge = <U, S>(ob1: U, ob2: S): U & S => {
