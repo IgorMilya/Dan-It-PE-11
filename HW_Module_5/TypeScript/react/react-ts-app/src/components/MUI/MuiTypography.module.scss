@@ -1,0 +1,24 @@
+.first {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.slider {
+  color: #535bf2;
+}
+
+.slider :global .MuiSlider-thumb {
+  border-radius: 1px;
+  background: #000;
+}
+
+.slider:hover {
+  color: #2e8b57;
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .slider {
+    color: seagreen;
+  }
+}
