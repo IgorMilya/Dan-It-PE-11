@@ -1,12 +1,13 @@
 import {Slider, Typography, useTheme} from "@mui/material";
 import s from "./MuiTypography.module.scss"
 import React, {FC} from "react"
+import {useGetProductQuery} from "../../redux/reducers/productSlice";
 
 
 const MuiTypography: FC = () => {
-const theme = useTheme()
-  console.log(theme)
-
+  const theme = useTheme()
+  const {data: product} = useGetProductQuery(null)
+  console.log(product)
   return (
     <>
       <Typography variant={"dashNumb"} color={"text.secondary"}>Heading h6</Typography>
