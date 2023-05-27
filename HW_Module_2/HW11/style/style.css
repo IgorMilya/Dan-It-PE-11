@@ -1,0 +1,43 @@
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.password-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 200px;
+}
+
+.input-wrapper input {
+  min-width: 120px;
+  padding: 10px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+.input-wrapper:nth-child(2) input {
+  margin-bottom: 0;
+}
+
+.input-wrapper i {
+  position: absolute;
+  right: 10px;
+  top: 30px;
+  color: grey;
+}
+.change-password{
+  display: flex;
+  justify-content: right;
+  margin-bottom: 30px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.btn {
+  width: 100%;
+}
